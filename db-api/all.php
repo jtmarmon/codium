@@ -46,25 +46,36 @@ class User {
         return $classes;
     }
 
-    function hostCourse($name, $start, $end) {
+    function hostCourse($name, $start, $end, $open) {
         $mysql = getDB();
-        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?))");
-        $stmt->bind_param("siss", $name, $this->id, $start, $end);
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?)");
+        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $open ? 1 : 0);
         $stmt->execute();
         $stmt->close();
+    }
+
+    function startSession() {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("INSERT INTO `sessions` VALUES(?, ?)");
+        $hash = bin2hex(openssl_random_pseudo_bytes(23));
+        $stmt->bind_param("is", $this->id, $hash);
+        $stmt->execute();
+        $stmt->close;
+        return $hash;
     }
 
 }
 
 class Course {
 
-    function __construct($id, $name, $owner, $start, $end) {
+    function __construct($id, $name, $owner, $start, $end, $open) {
         $this->id = $id;
         $this->name = $name;
         $this->owner = $owner;
         date_default_timezone_set("EST");
         $this->start = strtotime($start);
         $this->end = strtotime($end);
+        $this->open = $open;
     }
 
     function enrolled() {
@@ -90,6 +101,38 @@ class Course {
         $stmt->bind_param("ii", $user->id, $this->id);
         $stmt->execute();
         $stmt->close();
+    }
+
+    function invite($email) {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("INSERT INTO `invited` VALUES(?, ?)");
+        $stmt->bind_param("is", $this->id, $email);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    function isInvited($user) {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("SELECT * FROM `invited` WHERE `class` = ? AND `email` = ?");
+        $stmt->bind_param("is", $this->id, $user->email);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->close();
+        return $result;
+    }
+
+    function isEnrolled($user) {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("SELECT * FROM `enrollment` WHERE `user` = ? AND `class` = ?");
+        $stmt->bind_param("ii", $user->id, $this->id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->close();
+        return $result;
+    }
+
+    function getFirebaseIDFor($user) {
+        return "doc-" . $this->id . "-" . $user->id;
     }
 
 }
@@ -140,10 +183,27 @@ function getUserByID($id) {
     return new User($id, $fname, $lname, $email);
 }
 
+function getUserByHash($hash) {
+    $mysql = getDB();
+
+    $stmt = $mysql->prepare("SELECT `user` FROM `sessions` WHERE `hash` = ?");
+    $stmt->bind_param("s", $hash);
+    $stmt->execute();
+
+    $id = NULL;
+    $stmt->bind_result($id);
+    if(!$stmt->fetch()) {
+        $stmt->close();
+        return null;
+    }
+    $stmt->close();
+    return getUserByID($id);
+}
+
 function getCourse($id) {
     $mysql = getDB();
 
-    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end` FROM `classes` WHERE `id` = ?");
+    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open` FROM `classes` WHERE `id` = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 
@@ -151,13 +211,14 @@ function getCourse($id) {
     $owner = NULL;
     $start = NULL;
     $end = NULL;
-    $stmt->bind_result($name, $owner, $start, $end);
+    $open = NULL;
+    $stmt->bind_result($name, $owner, $start, $end, $open);
     if(!$stmt->fetch()) {
         $stmt->close();
         return null;
     }
     $stmt->close();
-    return new Course($id, $name, $owner, $start, $end);
+    return new Course($id, $name, $owner, $start, $end, $open);
 }
 
 function addUser($fname, $lname, $email, $pass) {
