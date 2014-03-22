@@ -1,5 +1,4 @@
 <html>
-<<<<<<< HEAD
 	<head>
 		<meta charset = "utf-8">
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
@@ -7,6 +6,9 @@
 		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
 		
 		    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+         <script src="codemirror/mode/javascript/javascript.js"></script>
+
 
 	    <!-- CODEMIRROR: Download from http://codemirror.net/codemirror.zip -->
 	    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
@@ -18,15 +20,19 @@
 	</head>
 	<body>
 		<h1 id = "welcome-heading">Welcome to class: </h1> <!-- LOAD CLASSNAME FROM PHP TABLES-->
-		<div id = "tokbox"> </div>	
+		<div id = "tokbox"> </div>
+		<h3 id = "write-some-code"> Write some code!</h3>
 		<div id ="firepad"></div>
 
 
- 	<script>
-      var firepadRef = new Firebase('<FIREBASE URL>');
-      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-          { lineNumbers:true });
+ 	
+    <script>
+      var firepadRef = new Firebase('http://codium.firebaseio.com');
+      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: 'javascript'});
+      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+     
+    </script>
+
     </script>
     <script type="text/javascript">
 			
@@ -66,14 +72,3 @@
 		</script>
 	</body>
 </html>
-=======
-<head>
-</head>
-<body>
-Hello world. santehous
-</body>
-</html>
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
