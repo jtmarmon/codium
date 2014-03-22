@@ -1691,7 +1691,6 @@ output {
 .form-control {
   margin: 20px 0;
   display: block;
-  width: 20%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -1700,6 +1699,7 @@ output {
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
+  width:100%;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
