@@ -9,9 +9,9 @@ class User {
         $this->email = $email;
     }
 
-    private function courses($table) {
+    function enrolled() {
         $mysql = getDB();
-        $stmt = $mysql->prepare("SELECT `class` FROM " . $table . " WHERE `user` = ?");
+        $stmt = $mysql->prepare("SELECT `class` FROM `enrollment` WHERE `user` = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
@@ -22,15 +22,36 @@ class User {
         while($stmt->fetch()) {
             array_push($classes, getCourse($class));
         }
+        $stmt->close();
         return $classes;
     }
 
-    function enrolled() {
-        return $this->courses('enrollment');
+    function hosting() {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end` FROM `classes` WHERE `owner` = ?");
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+
+        $id = NULL;
+        $name = NULL;
+        $start = NULL;
+        $end = NULL;
+        $stmt->bind_result($id, $name, $start, $end);
+
+        $classes = array();
+        while($stmt->fetch()) {
+            array_push($classes, new Course($id, $name, $this, $start, $end));
+        }
+        $stmt->close();
+        return $classes;
     }
 
-    function hosting() {
-        return $this->courses('hosting');
+    function hostCourse($name, $start, $end) {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?))");
+        $stmt->bind_param("siss", $name, $this->id, $start, $end);
+        $stmt->execute();
+        $stmt->close();
     }
 
 }
@@ -41,8 +62,9 @@ class Course {
         $this->id = $id;
         $this->name = $name;
         $this->owner = $owner;
-        $this->start = $start;
-        $this->end = $end;
+        date_default_timezone_set("EST");
+        $this->start = strtotime($start);
+        $this->end = strtotime($end);
     }
 
     function enrolled() {
@@ -58,7 +80,16 @@ class Course {
         while($stmt->fetch()) {
             array_push($users, getUserByID($user));
         }
+        $stmt->close();
         return $users;
+    }
+
+    function enroll($user) {
+        $mysql = getDB();
+        $stmt = $mysql->prepare("INSERT INTO `enrollment` VALUES (?, ?)");
+        $stmt->bind_param("ii", $user->id, $this->id);
+        $stmt->execute();
+        $stmt->close();
     }
 
 }
@@ -127,6 +158,15 @@ function getCourse($id) {
     }
     $stmt->close();
     return new Course($id, $name, $owner, $start, $end);
+}
+
+function addUser($fname, $lname, $email, $pass) {
+    $mysql = getDB();
+
+    $stmt = $mysql->prepare("INSERT INTO `users` VALUES(NULL, ?, ?, LOWER(?), AES_ENCRYPT(LOWER(?), 'codiumisbest'))");
+    $stmt->bind_param("ssss", $fname, $lname, $email, $pass);
+    $stmt->execute();
+    $stmt->close();
 }
 
 ?>
