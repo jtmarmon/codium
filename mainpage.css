@@ -1,0 +1,16 @@
+html
+{
+	font-family: 'Ubuntu Mono';
+	margin: 0px 10px;
+	background-color:#D6FFC2;
+}
+#welcome-heading
+{
+	text-align: center;
+	background-color:	#B8FF94;
+	padding: 10px 0px;
+}
+#tokbox
+{
+	margin-left:500px;
+}
