@@ -3,9 +3,9 @@
 class DB {
 
     function __construct() {
-        $this->ip = '127.0.0.1';
-        $this->user = 'root';
-        $this->pass = 'codium7a';
+        $this->ip = 'localhost';
+        $this->user = 'dbuser';
+        $this->pass = 'Makelotsofmoney7';
         $this->db = 'codium';
     }
 
