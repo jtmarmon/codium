@@ -108,9 +108,9 @@ function l($l) {
           refreshSyntaxColors();
 
           //document.getElementById("Language").value = 
-          firepadRef.on('value', function(snapshot) {
+          /*firepadRef.on('value', function(snapshot) {
             alert('lang is ' + snapshot.val());
-          });
+          });*/
         }
       </script>
 	</head>
