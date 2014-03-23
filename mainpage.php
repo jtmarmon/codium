@@ -1,4 +1,4 @@
-<?php/*
+<?php /*
     require_once 'opentok/OpenTokSDK.php';
 
     require_once 'opentok/OpenTokArchive.php';
