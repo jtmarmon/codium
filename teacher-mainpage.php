@@ -7,7 +7,7 @@ if((new Mobile_Detect)->isMobile()) {
 }
 
 if(!isset($_GET['id'])) {
-    header("Location: index.html");
+    header("Location: index.php");
     die();
 }
 
@@ -26,7 +26,7 @@ if($user == NULL) {
 
 $course = getCourseByPage($_GET['id']);
 if($course == NULL) {
-    header("Location: index.html");
+    header("Location: index.php");
     die();
 }
 
