@@ -100,7 +100,13 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
         <br/>
         <div id = "col-left">
         	<h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
-        	<input onkeypress = "searchStudent()" type = "text" class = "form-control" placeholder = "Student name..." />
+        	<table>
+        		<td><a href = "#" class="btn btn-md btn-default"> Jonny Appleseed </a> </td>
+        		<td><a href = "#" class="btn btn-md btn-default"> Bobby Bobsled </a> </td>
+        		<td><a href = "#" class="btn btn-md btn-default"> Mike Dingo </a> </td>
+        		<td><a href = "#" class="btn btn-md btn-default"> Chris Thatcher </a> </td>
+
+        	</table>
         </div>
         <div id = "col-right">
         	<div id = "firebase-student"></div>
