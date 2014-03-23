@@ -149,10 +149,13 @@ if(!$course->isEnrolled($user)) {
         </div>
 
  	 
-      <script type="text/javascript">
-        var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
-        var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-      //chat.setUser('<user-id>', '<display-name>');
+      <script type='text/javascript'>
+           var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+    var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
+      simpleLogin('<?php echo $user->getName(); ?> ')  
+      }
+    });
     </script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
