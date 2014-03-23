@@ -147,25 +147,9 @@ function l($l) {
         </div>
 
  	<script type='text/javascript'>
-        /*var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
-        var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));*/
-        /*var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-            if (user) {
-                chat.setUser(user.id, 'Anonymous' + user.id.substr(0, 8));
-                setTimeout(function() {
-                    chat._chat.enterRoom(<?php echo 'chat-' . $course->id; ?>);
-                }, 500);
-            } else {
-                simpleLogin.login('anonymous');    
-            }
-        });*/
-        var base = new Firebase('https://firechat-codium.firebaseio.com');
-        var chat = new Firechat(base);
-        chat.setUser(<?php echo "'" . $user->id . "'"; ?>, <?php echo "'" . $user->getName() . "'"; ?>);
-        chat.createRoom(<?php echo $course->id; ?>, "public", null);
-        var chatUI = new FirechatUI(base, document.getElementById("firechat-wrapper"));
-        chatUI.setUser(<?php echo "'" . $user->id . "'"; ?>, <?php echo "'" . $user->getName() . "'"; ?>);
-        chatUI._chat.enterRoom(<?php echo $course->id; ?>);
+        var chatRef = new Firebase('https://<your-firebase>.firebaseio.com/chat');
+      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+      chat.setUser('<user-id>', '<display-name>');
   	</script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
