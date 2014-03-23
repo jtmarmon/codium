@@ -20,6 +20,8 @@
   width:50%;
   background-color:#424445;
   color:white;
+  border: 5px solid;
+  border-color: green;
 }
 
 .firepad-richtext .CodeMirror {
