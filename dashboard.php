@@ -68,15 +68,16 @@ if(isset($_POST['name'])) {
         <style type = "text/css">
           .navbar
           {
-            background-color: green;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
           }
       .navbar a
       {
-        color:white !important;
+        color: #FFF !important;
       }
       .navbar a:hover
       {
-        color:#7D7D7D !important;
+        color: #DBDBDB !important;
       }
       </style>
   </head>

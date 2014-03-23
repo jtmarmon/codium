@@ -12,7 +12,7 @@ require_once "all.php";
 //getCourse(2)->enroll(getUserByID(2));
 //echo getUser('gregthegeek@optonline.net', 'password')->startSession();
 //echo getUserByHash('e2ab7201f97d93fa4ddbd0e19412e736a219901aa2b643')->lname;
-getCourse(1)->invite("gregthegeek2@optonline.net");
+//getCourse(1)->invite("gregthegeek2@optonline.net");
 //echo getCourse(1)->isEnrolled(getUserByID(1)) ? 'yes' : 'no';
 // echo getCourse(1)->getFirebaseIDFor(getUserByID(1));
 

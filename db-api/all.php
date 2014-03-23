@@ -216,6 +216,16 @@ function getUserByHash($hash) {
     return getUserByID($id);
 }
 
+function doesUserExist($email) {
+    $mysql = getDB();
+    $stmt = $mysql->prepare("SELECT * FROM `users` WHERE `email` = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    $stmt->close();
+    return $result;
+}
+
 function getCourse($id) {
     $mysql = getDB();
 
@@ -244,6 +254,19 @@ function addUser($fname, $lname, $email, $pass) {
     $stmt->bind_param("ssss", $fname, $lname, $email, $pass);
     $stmt->execute();
     $stmt->close();
+
+    $stmt = $mysql->prepare("SELECT `id` FROM `users` WHERE `fname` = ? AND `lname` = ? AND `email` = LOWER(?) AND `pass` = AES_ENCRYPT(LOWER(?), 'codiumisbest')");
+    $stmt->bind_param("ssss", $fname, $lname, $email, $pass);
+    $stmt->execute();
+    $id = NULL;
+    $stmt->bind_result($id);
+    if(!$stmt->fetch()) {
+        // wat
+        die();
+    }
+    $stmt->close();
+
+    return new User($id, $fname, $lname, $email);
 }
 
 ?>
