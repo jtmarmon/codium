@@ -210,7 +210,8 @@ class Course {
 }
 
 function getDB() {
-    $mysql = new mysqli('127.0.0.1', 'root', 'codium7a', 'codium');
+    require_once "db-info.php";
+    $mysql = new mysqli($ip, $user, $pass, $db);
     if($mysql->connect_error) {
         return null;
     }

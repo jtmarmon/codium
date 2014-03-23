@@ -21,12 +21,12 @@ require_once "all.php";
 // getCourse(2)->invite("gregthegeek@optonline.net");
 
 
-$ch = curl_init("https://codium.firebaseio.com/doc-1-1/lang.json");
+/*$ch = curl_init("https://codium.firebaseio.com/doc-1-1/lang.json");
 
 curl_setopt($ch, CURLOPT_HEADER, 0);
 
 echo json_decode(curl_exec($ch));
-curl_close($ch);
+curl_close($ch);*/
 
 /*$data = array("lang" => "javascript");
 $ch = curl_init("https://codium.firebaseio.com/doc-1-1.json");
