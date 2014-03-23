@@ -64,6 +64,19 @@ if(isset($_POST['name'])) {
           document.getElementById("students").style.display = "none";
         }
       }
+
+      var open = '';
+
+      function show(id) {
+        open = id;
+        document.getElementById(id).style.display = "block";
+        document.getElementById('pop-up-bg').style.display = "block";
+      }
+
+      function hide() {
+        document.getElementById(open).style.display = "none";
+        document.getElementById('pop-up-bg').style.display = "none";
+      }
     </script>
         <style type = "text/css">
           .navbar
@@ -83,7 +96,7 @@ if(isset($_POST['name'])) {
   </head>
 
   <body>
-
+    <div id="pop-up-bg" onclick="hide()"></div>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -98,7 +111,72 @@ if(isset($_POST['name'])) {
       </div>
     </div>
 
-        
+    <?php
+
+      $hosting = $user->hosting();
+      foreach($hosting as $course) {
+        echo '<div class="pop-up" id="host-' . $course->id . '">';
+          echo '<a class="pop-up-close" onclick="hide()"><span>x</span></a>';
+          echo '<div class="pop-up-text">';
+            echo '<table class="table table-striped">';
+              echo '<thead>';
+                echo '<tr>';
+                  echo '<th>Name</th>';
+                  echo '<th>Email</th>';
+                echo '</tr>';
+              echo '</thead>';
+              echo '<tbody>';
+                $students = $course->enrolled();
+                if(count($students) == 0) {
+                  echo '<tr>';
+                    echo '<td colspan="2">No students enrolled :(</td>';
+                  echo '</tr>';
+                } else {
+                  foreach($students as $student) {
+                    echo '<tr>';
+                      echo '<td>' . $student->fname . ' ' . $student->lname . '</td>';
+                      echo '<td>' . $student->email . '</td>';
+                    echo '</tr>';
+                  }
+                }
+              echo '</tbody>';
+            echo '</table>';
+          echo '</div>';
+        echo '</div>';
+      }
+
+      $enrolled = $user->enrolled();
+      foreach($enrolled as $course) {
+        echo '<div class="pop-up" id="enroll-' . $course->id . '">';
+          echo '<div class="pop-up-text">';
+            echo '<table class="table table-striped">';
+              echo '<thead>';
+                echo '<tr>';
+                  echo '<th>Name</th>';
+                  echo '<th>Email</th>';
+                echo '</tr>';
+              echo '</thead>';
+              echo '<tbody>';
+                $students = $course->enrolled();
+                if(count($students) == 0) {
+                  echo '<tr>';
+                    echo '<td colspan="2">No students enrolled :(</td>';
+                  echo '</tr>';
+                } else {
+                  foreach($students as $student) {
+                    echo '<tr>';
+                      echo '<td>' . $student->fname . ' ' . $student->lname . '</td>';
+                      echo '<td>' . $student->email . '</td>';
+                    echo '</tr>';
+                  }
+                }
+              echo '</tbody>';
+            echo '</table>';
+          echo '</div>';
+        echo '</div>';
+      }
+
+    ?>
         
     <h1 class="page-header">Dashboard</h1>
 
@@ -128,22 +206,17 @@ if(isset($_POST['name'])) {
               </thead>
               <tbody>
                 <?php
-                  $courses = $user->hosting();
-                  if(count($courses) == 0) {
+                  if(count($hosting) == 0) {
                     echo "<tr>";
                     echo '<td colspan="3">You are not hosting any courses :(</td>';
                     echo "</tr>";
                   } else {
-                    foreach($courses as $course) {
+                    foreach($hosting as $course) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
-                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Show Class List</a></td>';
+                      echo '<td><a class="btn btn-md btn-success" onclick="show(\'host-' . $course->id . '\')">Show Class List</a></td>';
                       echo "</tr>";
-
-                      echo '<div class="pop-up">';
-                      echo 'hi';
-                      echo '</div>';
                     }
                   }
                 ?>
@@ -163,18 +236,17 @@ if(isset($_POST['name'])) {
               </thead>
               <tbody>
                   <?php
-                  $courses = $user->enrolled();
-                  if(count($courses) == 0) {
+                  if(count($enrolled) == 0) {
                     echo "<tr>";
                     echo '<td colspan="4">You are not enrolled in any courses :(</td>';
                     echo "</tr>";
                   } else {
-                    foreach($courses as $course) {
+                    foreach($enrolled as $course) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
                       echo "<td>" . $course->owner->fname . " " . $course->owner->lname . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
-                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Show Class List</a></td>';
+                      echo '<td><a class="btn btn-md btn-success" onclick="show(\'enroll-' . $course->id . '\')">Show Class List</a></td>';
                       echo "</tr>";
                     }
                   }
