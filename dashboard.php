@@ -25,7 +25,7 @@ if(isset($_POST['name'])) {
       }
     }
 
-    header("Location: mainpage.php"); // TODO link to specific mainpage
+    header("Location: " . $course->getURL());
     die();
   }
 }
@@ -218,7 +218,7 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($hosting as $course) {
-                      $meta = ' onclick="window.location=\'mainpage.html\'"'; // TODO: link to real mainpage
+                      $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";
                       echo '<td' . $meta . '>' . count($course->enrolled()) . "</td>";
@@ -249,7 +249,7 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($enrolled as $course) {
-                      $meta = ' onclick="window.location=\'mainpage.html\'"'; // TODO: link to real mainpage
+                      $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";
                       echo '<td' . $meta . '>' . $course->owner->fname . " " . $course->owner->lname . "</td>";

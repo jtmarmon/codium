@@ -28,7 +28,7 @@ class User {
 
     function hosting() {
         $mysql = getDB();
-        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end`,`open` FROM `classes` WHERE `owner` = ?");
+        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end`,`open`,`page` FROM `classes` WHERE `owner` = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
@@ -37,11 +37,12 @@ class User {
         $start = NULL;
         $end = NULL;
         $open = NULL;
+        $page = NULL;
         $stmt->bind_result($id, $name, $start, $end, $open);
 
         $classes = array();
         while($stmt->fetch()) {
-            array_push($classes, new Course($id, $name, $this, $start, $end, $open));
+            array_push($classes, new Course($id, $name, $this, $start, $end, $open, $page));
         }
         $stmt->close();
         return $classes;
@@ -50,14 +51,15 @@ class User {
     function hostCourse($name, $start, $end, $open) {
         $mysql = getDB();
 
-        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?)");
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?)");
         $o = $open ? 1 : 0;
-        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $o);
+        $hash = bin2hex(openssl_random_pseudo_bytes(5));
+        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
         $stmt->execute();
         $stmt->close();
 
-        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ?");
-        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $o);
+        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
+        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
         $stmt->execute();
         $id = NULL;
         $stmt->bind_result($id);
@@ -67,7 +69,7 @@ class User {
         }
         $stmt->close();
 
-        return new Course($id, $name, $this, $start, $end, $open);
+        return new Course($id, $name, $this, $start, $end, $open, $hash);
     }
 
     function startSession() {
@@ -88,7 +90,7 @@ class User {
 
 class Course {
 
-    function __construct($id, $name, $owner, $start, $end, $open) {
+    function __construct($id, $name, $owner, $start, $end, $open, $page) {
         $this->id = $id;
         $this->name = $name;
         $this->owner = $owner;
@@ -96,6 +98,7 @@ class Course {
         $this->start = strtotime($start);
         $this->end = strtotime($end);
         $this->open = $open;
+        $this->page = $page;
     }
 
     function enrolled() {
@@ -140,8 +143,8 @@ class Course {
         $mail->addTo($email);
         $mail->setSubject("You have been invited to a class!");
 
-        $url = "http://codium.io/"; // TODO set to actual link
-        $urlz = "http://<z>codium</z>.io/"; // TODO set to actual link
+        $url = $this->getURL();
+        $urlz = "http://<z>codium</z>.io/" . $page;
         $index = strrpos($email, '@');
         $emailz = substr_replace($email, "<z></z>", $index < 0 ? 1 : $index, 0);
         $index2 = strrpos($email, '.', $index);
@@ -198,6 +201,10 @@ class Course {
         $stmt->close();
 
         return $emails;
+    }
+
+    function getURL() {
+        return "http://codium.io/" . $this->page;
     }
 
 }
@@ -297,7 +304,7 @@ function doesUserExist($email) {
 function getCourse($id) {
     $mysql = getDB();
 
-    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open` FROM `classes` WHERE `id` = ?");
+    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`page` FROM `classes` WHERE `id` = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 
@@ -306,13 +313,14 @@ function getCourse($id) {
     $start = NULL;
     $end = NULL;
     $open = NULL;
-    $stmt->bind_result($name, $owner, $start, $end, $open);
+    $page = NULL;
+    $stmt->bind_result($name, $owner, $start, $end, $open, $page);
     if(!$stmt->fetch()) {
         $stmt->close();
         return null;
     }
     $stmt->close();
-    return new Course($id, $name, getUserByID($owner), $start, $end, $open);
+    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page);
 }
 
 function addUser($fname, $lname, $email, $pass) {
