@@ -54,7 +54,22 @@ html
 }
 
 .navbar a:hover {
-      color: #7D7D7D !important;
+      color: #DBDBDB !important;
+}
+
+.navbar-nav li {
+  padding-top: 15px;
+  padding-top: 15px;
+  padding-right: 15px;
+  line-height: 20px;
+  position: relative;
+  display: block;
+  color: #FFF;
+  font-size: 14px;
+}
+
+.navbar-nav li a {
+  padding: 0;
 }
 
 #firepad {

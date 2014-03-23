@@ -141,6 +141,10 @@ body {
   padding: 0;
 }
 
+.navbar a:hover {
+  color: #DBDBDB !important;
+}
+
 #pop-up-bg {
   position: fixed;
   top: 0;

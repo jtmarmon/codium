@@ -65,20 +65,26 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
       <div class="container-fluid">
         <div  class="navbar-header">
-          <a class="navbar-brand"  href="#">Class: <!--TODO LOAD CLASSNAME FROM PHP, TODO ADD NAME TO END OF TOOLBAR--> </a>
-     	 </div>
+          <a class="navbar-brand"  href="dashboard.php">Codium</a>
+     	</div>
+        <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav navbar-right">
+             <li><?php echo $user->getName(); ?></li>
+             <li><a href="log-out.php">Log Out</a></li>
+             </ul>
+         </div>
       </div>
     </div>
 
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php ?></h1> <!-- TODO LOAD CLASSNAME FROM PHP -->
+		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php echo $course->name; ?></h1>
 		<div id = "tokbox"> </div>
 
         <div id="col-left">
             <h3 id="write-some-code">Write some code.</h3>
     		<form action="" id="language-form">
-    				<select name="Language">
-    					<option value="JavaScript">JavaScript</option>
+    				<select name="Language" id="Language">
+    					<option value="javascript">JavaScript</option>
     					<option value="CSS">CSS</option>
     					<option value="HTML">HTML</option>
     					<option value="PHP">PHP</option>
@@ -107,8 +113,8 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     });
   	</script>
     <script type = "text/javascript">
-      var firepadRef = new Firebase('http://codium.firebaseio.com'); //TODO append personal firebase URL to parameter
-      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: 'javascript'}); //TODO get mode from dropdown
+      var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
+      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
      
     </script>
