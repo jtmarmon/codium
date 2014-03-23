@@ -35,6 +35,15 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     die();
 }
 
+function l($l) {
+    global $lang;
+    if($lang == $l) {
+        return " selected";
+    } else {
+        return "";
+    }
+}
+
 ?>
 <html>
 	<head>
@@ -118,10 +127,11 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
             <h3 id="write-some-code">Write some code.</h3>
     		<form action="" id="language-form">
     				<select name="Language" id="Language">
-    					<option value="javascript">JavaScript</option>
-    					<option value="CSS">CSS</option>
-    					<option value="HTML">HTML</option>
-    					<option value="PHP">PHP</option>
+    					<?php
+                        foreach($modes as $mode) {
+                            echo '<option value="' . $mode . '"' . l($mode) . '>' . $mode . '</option>';
+                        }
+                        ?>
     				</select>
     		</form>
             <div id="firepad"></div>

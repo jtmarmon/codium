@@ -67,6 +67,10 @@ function l($l) {
     }
 }
 
+if(!$course->isEnrolled($user)) {
+  $course->enroll($user);
+}
+
 ?>
 <html>
 	<head>
