@@ -18,5 +18,6 @@ require_once "all.php";
 //echo var_dump(getUserByHash($_COOKIE['hash'])->enrolled());
 //echo var_dump(getUserById(1)->enrolled());
 //echo var_dump(getCourse(1));
+// getCourse(2)->invite("gregthegeek@optonline.net");
 
 ?>

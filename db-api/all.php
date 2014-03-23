@@ -80,6 +80,10 @@ class User {
         return $hash;
     }
 
+    function getName() {
+        return $this->fname . " " . $this->lname;
+    }
+
 }
 
 class Course {
@@ -125,6 +129,33 @@ class Course {
         $stmt->bind_param("is", $this->id, $email);
         $stmt->execute();
         $stmt->close();
+
+        require_once "../sendgrid/SendGrid.php";
+        require_once "../sendgrid/SendGrid/Email.php";
+        require_once "../sendgrid/info.php";
+        $sendgrid = new SendGrid($user, $pass);
+        $mail = new SendGrid\Email();
+        $mail->setFrom("no-reply@codium.io");
+        $mail->setFromName("Codium");
+        $mail->addTo($email);
+        $mail->setSubject("You have been invited to a class!");
+
+        $url = "http://codium.io/"; // TODO set to actual link
+        $urlz = "http://<z>codium</z>.io/"; // TODO set to actual link
+        $index = strrpos($email, '@');
+        $emailz = substr_replace($email, "<z></z>", $index < 0 ? 1 : $index, 0);
+        $index2 = strrpos($email, '.', $index);
+        $emailz = substr_replace($email, "<z></z>", $index2 < 0 ? 1 : $index2, 0);
+        $msg = "";
+        $msg .= '<font style="font-size: 18px">';
+        $msg .= '<font style="font-weight: bold; color: #5cb85c">' . $this->owner->getName() . '</font> has invited you to their class <font style="font-weight: bold; color: #5cb85c">' . $this->name . "</font>!<br />";
+        $msg .= 'Click <a href="' . $url . '" style="font-weight: bold; color: #5cb85c; text-decoration: none">here</a> to accept their invitation. Make sure you sign in or register with the email <font style="font-weight: bold; color: #5cb85c">' . $emailz . '</font>.<br />';
+        $msg .= "If the above link does not work, please copy and paste the following into your browser's address bar: " . $urlz;
+        $msg .= '</font>';
+
+        $mail->setHtml($msg);
+        $sendgrid->send($mail);
+
     }
 
     function isInvited($user) {
