@@ -184,10 +184,10 @@ function l($l) {
     </script>
     <script type="text/javascript">
 			
-			  var apiKey    = "44698282";
-			  var sessionId = "1_MX40NDY5ODI4Mn5-U2F0IE1hciAyMiAxNDozMToxMSBQRFQgMjAxNH4wLjU3MDgyNDR-";
-			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1jMWMxMDU3MDYyZjk4OTdmOWRmMzViMmQxY2FlYjE4ZjU4ZDA4MjBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRZNU9ESTRNbjUtVTJGMElFMWhjaUF5TWlBeE5Eb3pNVG94TVNCUVJGUWdNakF4Tkg0d0xqVTNNRGd5TkRSLSZjcmVhdGVfdGltZT0xMzk1NTI2MjQxJm5vbmNlPTAuMzQ0MTkyNjUwMzExOTg2ODcmZXhwaXJlX3RpbWU9MTM5NTUyOTgyMCZjb25uZWN0aW9uX2RhdGE9"; //TODO generate from PHP script (token & session id)
-			 
+			 var apiKey    =  "44698282";
+			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
+			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
+			  
 			  function sessionConnectedHandler (event) {
 			  	//TODO wrap this code in "if is teacher"
 			     session.publish(publisher); 

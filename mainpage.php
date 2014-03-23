@@ -1,5 +1,5 @@
-<?php
-    /*require_once 'opentok/OpenTokSDK.php';
+<?php/*
+    require_once 'opentok/OpenTokSDK.php';
 
     require_once 'opentok/OpenTokArchive.php';
 
@@ -150,7 +150,7 @@ if(!$course->isEnrolled($user)) {
 
  	 
       <script type="text/javascript">
-        var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+        var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
         var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
       //chat.setUser('<user-id>', '<display-name>');
     </script>
@@ -162,9 +162,9 @@ if(!$course->isEnrolled($user)) {
     </script>
     <script type="text/javascript">
 			
-			  var apiKey    =  <?php print API_Config::API_KEY?>;
-			  var sessionId = '<?php print $sessionId; ?>;'
-			  var token     = '<?php print $apiObj->generate_token($sessionId); ?>'
+			  var apiKey    =  "44698282";
+			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
+			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
 			  function sessionConnectedHandler (event) {
 			  	//TODO wrap this code in "if is teacher"
 			     session.publish(publisher); 
