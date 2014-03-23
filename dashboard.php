@@ -25,7 +25,7 @@ if(isset($_POST['name'])) {
       }
     }
 
-    header("Location: mainpage.php");
+    header("Location: mainpage.php"); // TODO link to specific mainpage
     die();
   }
 }
@@ -207,12 +207,12 @@ if(isset($_POST['name'])) {
               <tbody>
                 <?php
                   if(count($hosting) == 0) {
-                    echo "<tr>";
+                    echo '<tr id="nothing">';
                     echo '<td colspan="3">You are not hosting any courses :(</td>';
                     echo "</tr>";
                   } else {
                     foreach($hosting as $course) {
-                      echo "<tr>";
+                      echo '<tr onclick="window.location=\'mainpage.html\'">'; // TODO: link to real mainpage
                       echo "<td>" . $course->name . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
                       echo '<td><a class="btn btn-md btn-success" onclick="show(\'host-' . $course->id . '\')">Show Class List</a></td>';
@@ -237,12 +237,12 @@ if(isset($_POST['name'])) {
               <tbody>
                   <?php
                   if(count($enrolled) == 0) {
-                    echo "<tr>";
+                    echo '<tr id="nothing">';
                     echo '<td colspan="4">You are not enrolled in any courses :(</td>';
                     echo "</tr>";
                   } else {
                     foreach($enrolled as $course) {
-                      echo "<tr>";
+                      echo '<tr onclick="window.location=\'mainpage.html\'">'; // TODO: link to real mainpage
                       echo "<td>" . $course->name . "</td>";
                       echo "<td>" . $course->owner->fname . " " . $course->owner->lname . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
