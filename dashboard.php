@@ -275,6 +275,7 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($enrolled as $course) {
+                      if($course->owner->id == $user->id) continue;
                       $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";

@@ -30,7 +30,7 @@ if($course == NULL) {
     die();
 }
 
-if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
+if(!$course->isEnrolled($user) && !$course->isInvited($user) && $course->owner->id != $user->id) {
     header("Location: denied.php?id=" . $course->id);
     die();
 }
