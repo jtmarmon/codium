@@ -96,3 +96,28 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+#start-class {
+  width: 300px;
+}
+
+#start-class .date {
+  width: 49%;
+  display: inline;
+  margin-top: 0;
+}
+
+#start-class label {
+  font-weight: normal;
+  position: relative;
+  top: 1px;
+  margin-bottom: 20px;
+}
+
+#start-class #students {
+  display: none;
+}
+
+#start-class .btn {
+  display: block;
+}

@@ -28,7 +28,7 @@ class User {
 
     function hosting() {
         $mysql = getDB();
-        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end` FROM `classes` WHERE `owner` = ?");
+        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end`,`open` FROM `classes` WHERE `owner` = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
@@ -36,11 +36,12 @@ class User {
         $name = NULL;
         $start = NULL;
         $end = NULL;
-        $stmt->bind_result($id, $name, $start, $end);
+        $open = NULL;
+        $stmt->bind_result($id, $name, $start, $end, $open);
 
         $classes = array();
         while($stmt->fetch()) {
-            array_push($classes, new Course($id, $name, $this, $start, $end));
+            array_push($classes, new Course($id, $name, $this, $start, $end, $open));
         }
         $stmt->close();
         return $classes;
@@ -48,10 +49,25 @@ class User {
 
     function hostCourse($name, $start, $end, $open) {
         $mysql = getDB();
+
         $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?)");
-        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $open ? 1 : 0);
+        $o = $open ? 1 : 0;
+        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $o);
         $stmt->execute();
         $stmt->close();
+
+        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ?");
+        $stmt->bind_param("sissi", $name, $this->id, $start, $end, $o);
+        $stmt->execute();
+        $id = NULL;
+        $stmt->bind_result($id);
+        if(!$stmt->fetch()) {
+            // wat
+            die();
+        }
+        $stmt->close();
+
+        return new Course($id, $name, $this, $start, $end, $open);
     }
 
     function startSession() {

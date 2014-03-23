@@ -1,5 +1,7 @@
 <?php
 
+if(isset($_GET['error']) $error = $_GET['error'];
+
 if(isset($_POST['email'], $_POST['pass'])) {
   require_once "db-api/all.php";
 
@@ -12,7 +14,7 @@ if(isset($_POST['email'], $_POST['pass'])) {
     $hash = $user->startSession();
     $expiration = time() + (60 * 60 * 24 * 3);
     setcookie('hash', $hash, $expiration, "/");
-    header("Location: dashboard.html");
+    header("Location: dashboard.php");
     die();
   }
 }
