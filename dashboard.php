@@ -244,7 +244,7 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($hosting as $course) {
-                      $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
+                      $meta = ' onclick="window.location=\'' . $course->getTeacherURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";
                       echo '<td' . $meta . '>' . count($course->enrolled()) . "</td>";

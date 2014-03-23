@@ -231,6 +231,10 @@ class Course {
         return "mainpage.php?id=" . $this->page;
     }
 
+    function getTeacherURL() {
+        return "teacher-mainpage.php?id=" . $this->page;
+    }
+
 }
 
 function doesPageExist($page) {

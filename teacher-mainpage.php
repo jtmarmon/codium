@@ -50,16 +50,50 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
   		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
 
 	    <link rel="stylesheet" href="firepad/firepad.css">
-	    <link rel="stylesheet" href="firechat/firechat-default.css">
-	    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
-	    <!--OPENTOK-->
-		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>        <script src="codemirror/mode/javascript/javascript.js"></script>
-	    <script src="codemirror/lib/codemirror.js"></script>
-	    <script src="firepad/firepad.js"></script>
-	    <script src="firechat/firechat-default.js"></script>
+      <link rel="stylesheet" href="firechat/firechat-default.css">
+      <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+      <!--OPENTOK-->
+    <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
+      <script src="codemirror/lib/codemirror.js"></script>
+        <?php
+            $modes = array('clojure', 'cobol', 'commonlisp', 'css', 'd', 'erlang', 'go', 'groovy', 'haskell', 'javascript', 'lua', 'octave', 'pascal', 'perl', 'php', 'python', 'r', 'ruby', 'scheme', 'smalltalk', 'sql');
+            foreach($modes as $mode) {
+                echo '<script src="codemirror/mode/' . $mode . '/' . $mode . '.js"></script>';
+            }
+        ?>
+      <script src="firepad/firepad.js"></script>
+      <script src="firechat/firechat-default.js"></script>
 		<!--CUSTOM PAGE CSS -->
 	    <link href = "mainpage.css" rel = "stylesheet">
 	    <link href = "firechat-overload.css" rel = "stylesheet">
+      <script type="text/javascript">
+        function refreshSyntaxColors() {
+            var l = document.getElementById("Language").value;
+            firepad.codeMirror_.setOption("mode", l);
+            var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
+            myRootRef.set(l);
+        }
+
+        var cpad = null;
+
+        function view(id) {
+          //document.getElementsByClassName("firepad")[0].removeChild(document.getElementsByClassName("CodeMirror")[0]);
+          document.getElementById("firepad").removeChild(document.getElementsByClassName("firepad")[0]);
+          //cpad.dispose();
+
+          var firepadRef = new Firebase('http://codium.firebaseio.com/doc-' + <?php echo "'" . $course->id . "'"; ?> + '-' + id);
+          var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true/*, mode: document.getElementById('Language').value*/});
+          var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+          cpad = firepad;
+
+          refreshSyntaxColors();
+
+          //document.getElementById("Language").value = 
+          firepadRef.on('value', function(snapshot) {
+            alert('lang is ' + snapshot.val());
+          });
+        }
+      </script>
 	</head>
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
@@ -91,25 +125,20 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     				</select>
     		</form>
             <div id="firepad"></div>
+            <h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
+          <table>
+            <?php
+              foreach($course->enrolled() as $student) {
+                echo '<tr><td><a class="btn btn-md btn-default" onclick="view(' . $student->id . ')">' . $student->getName() . '</a> </td></tr>';
+              }
+            ?>
+          </table>
         </div>
 
         <div id="col-right">
             <h3 id="write-some-code">Chat with your classmates.</h3>
-    		<div id="firechat-wrapper"> </div>
-        </div>
-        <br/>
-        <div id = "col-left">
-        	<h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
-        	<table>
-        		<td><a href = "#" class="btn btn-md btn-default"> Jonny Appleseed </a> </td>
-        		<td><a href = "#" class="btn btn-md btn-default"> Bobby Bobsled </a> </td>
-        		<td><a href = "#" class="btn btn-md btn-default"> Mike Dingo </a> </td>
-        		<td><a href = "#" class="btn btn-md btn-default"> Chris Thatcher </a> </td>
-
-        	</table>
-        </div>
-        <div id = "col-right">
-        	<div id = "firebase-student"></div>
+    		    <div id="firechat-wrapper"> </div>
+            <div id = "firebase-student"></div>
         </div>
     <script type="text/javascript">
     function searchStudent()
@@ -140,14 +169,7 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
-     
-    </script>
-    <script type = "text/javascript">
-    //FIREPAD FROM TEACHER SELECTION
-    function studentFirebase(selectionID)
-      var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/'"?> + selectionID);
-      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
-      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+      cpad = firepad;
      
     </script>
     <script type="text/javascript">
