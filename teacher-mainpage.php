@@ -152,10 +152,16 @@ function l($l) {
         </div>
     
  	<script type='text/javascript'>
-		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+		       var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
     var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-      simpleLogin('<?php echo $user->getName(); ?> ')  
+      if (user) {
+        chat.setUser(user.id, '<?php echo $user->getName(); ?>');
+        setTimeout(function() {
+          chat._chat.enterRoom('-Iy1N3xs4kN8iALHV0QA');
+        }, 500);
+      } else {
+        simpleLogin.login('anonymous');    
       }
     });
   	</script>
