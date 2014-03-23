@@ -35,6 +35,25 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     die();
 }
 
+$ch = curl_init("https://codium.firebaseio.com/". $course->getFirebaseIDFor($user) . "/lang.json");
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$data = json_decode(curl_exec($ch));
+curl_close($ch);
+$lang = "javascript";
+if($data != NULL) {
+    $lang = $data;
+}
+
+function l($l) {
+    global $lang;
+    if($lang == $l) {
+        return " selected";
+    } else {
+        return "";
+    }
+}
+
 ?>
 <html>
 	<head>
@@ -53,13 +72,26 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
 	    <link rel="stylesheet" href="firechat/firechat-default.css">
 	    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
 	    <!--OPENTOK-->
-		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>        <script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
 	    <script src="codemirror/lib/codemirror.js"></script>
+        <?php
+            $modes = array('clojure', 'cobol', 'commonlisp', 'css', 'd', 'erlang', 'go', 'groovy', 'haskell', 'javascript', 'lua', 'octave', 'pascal', 'perl', 'php', 'python', 'r', 'ruby', 'scheme', 'smalltalk', 'sql');
+        ?>
+        <script src="codemirror/mode/javascript/javascript.js"></script> <!-- TODO: include all languages -->
 	    <script src="firepad/firepad.js"></script>
 	    <script src="firechat/firechat-default.js"></script>
 		<!--CUSTOM PAGE CSS -->
 	    <link href = "mainpage.css" rel = "stylesheet">
 	    <link href = "firechat-overload.css" rel = "stylesheet">
+
+        <script type="text/javascript">
+            function refreshSyntaxColors() {
+                var l = document.getElementById("Language").value;
+                firepad.codeMirror_.setOption("mode", l);
+                var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
+                myRootRef.set(l);
+            }
+        </script>
 	</head>
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
@@ -83,11 +115,11 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
         <div id="col-left">
             <h3 id="write-some-code">Write some code.</h3>
     		<form action="" id="language-form">
-    				<select name="Language" id="Language">
-    					<option value="javascript">JavaScript</option>
-    					<option value="CSS">CSS</option>
-    					<option value="HTML">HTML</option>
-    					<option value="PHP">PHP</option>
+    				<select name="Language" id="Language" onchange="refreshSyntaxColors()">
+    					<option value="javascript"<?php echo l('javascript'); ?>>JavaScript</option>
+    					<option value="css"<?php echo l('css'); ?>>CSS</option>
+    					<option value="htmlmixed"<?php echo l('htmlmixed'); ?>>HTML</option>
+    					<option value="php"<?php echo l('php'); ?>>PHP</option>
     				</select>
     		</form>
             <div id="firepad"></div>
@@ -99,7 +131,7 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
         </div>
 
  	<script type='text/javascript'>
-		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com'); // TODO change
     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
     var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
       if (user) {

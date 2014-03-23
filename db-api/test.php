@@ -20,4 +20,21 @@ require_once "all.php";
 //echo var_dump(getCourse(1));
 // getCourse(2)->invite("gregthegeek@optonline.net");
 
+
+$ch = curl_init("https://codium.firebaseio.com/doc-1-1/lang.json");
+
+curl_setopt($ch, CURLOPT_HEADER, 0);
+
+echo json_decode(curl_exec($ch));
+curl_close($ch);
+
+/*$data = array("lang" => "javascript");
+$ch = curl_init("https://codium.firebaseio.com/doc-1-1.json");
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+echo curl_exec($ch);*/
+
 ?>

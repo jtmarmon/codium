@@ -80,10 +80,6 @@ html
 }
 
 #language-form {
-      /*position: absolute;
-      float: left;
-      top: 70%;
-      left: 43%;*/
       float: right;
 }
 
@@ -104,4 +100,8 @@ html
       margin-left: auto;
       margin-right: auto;
       text-align: center;
+}
+
+.CodeMirror {
+      background-color: #FFF !important;
 }
