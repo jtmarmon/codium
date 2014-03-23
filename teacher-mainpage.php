@@ -97,7 +97,24 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
             <h3 id="write-some-code">Chat with your classmates.</h3>
     		<div id="firechat-wrapper"> </div>
         </div>
-
+        <br/>
+        <div id = "col-left">
+        	<h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
+        	<input onkeypress = "searchStudent()" type = "text" class = "form-control" placeholder = "Student name..." />
+        </div>
+        <div id = "col-right">
+        	<div id = "firebase-student"></div>
+        </div>
+    <script type="text/javascript">
+    function searchStudent()
+    {
+	    var key=e.keyCode || e.which;
+		if (key==13){
+		form.submit(); //call search function
+		}
+		
+	}
+    </script>
  	<script type='text/javascript'>
 		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
@@ -113,6 +130,15 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     });
   	</script>
     <script type = "text/javascript">
+    //THIS IS THE FIRPAD FOR A REGULAR USER
+      var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
+      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
+      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+     
+    </script>
+    <script type = "text/javascript">
+    //FIREPAD FROM TEACHER SELECTION
+    function studentFirebase(selectionID)
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
