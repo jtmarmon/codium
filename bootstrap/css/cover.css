@@ -52,7 +52,7 @@ body {
   height: 100%; /* For at least Firefox */
   background-size: cover;
   background-position: center;
-  background-color:#67F072;
+  background-image:url("../../trees.jpg");
 
 }
 .site-wrapper-inner {
