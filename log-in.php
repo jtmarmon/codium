@@ -14,7 +14,8 @@ if(isset($_POST['email'], $_POST['pass'])/* && strlen($_POST['email']) > 0 && st
     $error = "Invalid email or password.";
   } else {
     $hash = $user->startSession();
-    $expiration = time() + (60 * 60 * 24 * 3); // TODO: care about "remember me" button
+    $remember = isset($_POST['remember']) && ($_POST['remember'] == 'remember-me' || $_POST['remember'] == 'checked');
+    $expiration = $remember ? time() + (60 * 60 * 24 * 30) : 0;
     setcookie('hash', $hash, $expiration, "/");
     header("Location: dashboard.php");
     die();
@@ -39,9 +40,9 @@ if(isset($_POST['fname'], $_POST['lname'], $_POST['emailr'], $_POST['passr'])) {
   if(doesUserExist($email)) {
     $error0 = "A account with that email already exists.";
   } else {
-    $user = addUser($fname, $lname, $email, $pass); // TODO: test
+    $user = addUser($fname, $lname, $email, $pass);
     $hash = $user->startSession();
-    $expiration = time() + (60 * 60 * 24 * 3); // TODO: care about "remember me" button
+    $expiration = $remember ? time() + (60 * 60 * 24 * 30) : 0;
     setcookie('hash', $hash, $expiration, "/");
     header("Location: dashboard.php");
     die();
@@ -78,7 +79,7 @@ function a($var) {
         <input type="email" class="form-control first" placeholder="Email" id="email" name="email" required autofocus <?php echo a('email'); ?>/>
         <input type="password" class="form-control last" placeholder="Password" id="pass" name="pass" required />
         <label class="checkbox">
-          <input type="checkbox" value="remember-me" /> Remember me
+          <input type="checkbox" value="remember-me" name="remember" id="remember" /> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <div id="noaccount"><a href="#" onclick="showSignUp()">Don't have an account yet?</a></div>

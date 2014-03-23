@@ -38,7 +38,7 @@ class User {
         $end = NULL;
         $open = NULL;
         $page = NULL;
-        $stmt->bind_result($id, $name, $start, $end, $open);
+        $stmt->bind_result($id, $name, $start, $end, $open, $page);
 
         $classes = array();
         while($stmt->fetch()) {

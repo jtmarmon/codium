@@ -105,7 +105,8 @@ if(isset($_POST['name'])) {
         </div>
         <div class="navbar-collapse collapse">
            <ul class="nav navbar-nav navbar-right">
-             <li><?php echo $user->fname . " " . $user->lname; ?></li>
+             <li><?php echo $user->getName(); ?></li>
+             <li><a href="log-out.php">Log Out</a></li>
              </ul>
          </div>
       </div>
