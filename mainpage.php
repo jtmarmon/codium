@@ -74,39 +74,37 @@ function l($l) {
 		<!--BOOTSTRAP & FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:400,300,500' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
-	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	    <link href="bootstrap/css/dashboard.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	    <!--FIREPAD-->
-		 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+	    <link href="bootstrap/css/dashboard.css" rel="stylesheet"/>
+       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+      <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+		
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+     
+      <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+      <link rel="stylesheet" href="firepad/firepad.css"/>
 
-	    <link rel="stylesheet" href="firepad/firepad.css">
-	    <link rel="stylesheet" href="firechat/firechat-default.css">
-	    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+      <link href = "mainpage.css" rel = "stylesheet">
+
+	    <!--FIREPAD-->
+    <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
+      <script src="codemirror/lib/codemirror.js"></script>
+       <script src="firepad/firepad.js"></script>
+      <link rel="stylesheet" href="firechat/firechat-default.css"/>
+      <script src="firechat/firechat-default.js"></script>
 	    <!--OPENTOK-->
-		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
-	    <script src="codemirror/lib/codemirror.js"></script>
+
+     
         <?php
             $modes = array('clojure', 'cobol', 'commonlisp', 'css', 'd', 'erlang', 'go', 'groovy', 'haskell', 'javascript', 'lua', 'octave', 'pascal', 'perl', 'php', 'python', 'r', 'ruby', 'scheme', 'smalltalk', 'sql');
             foreach($modes as $mode) {
                 echo '<script src="codemirror/mode/' . $mode . '/' . $mode . '.js"></script>';
             }
         ?>
-	    <script src="firepad/firepad.js"></script>
-	    <script src="firechat/firechat-default.js"></script>
-		<!--CUSTOM PAGE CSS -->
-	    <link href = "mainpage.css" rel = "stylesheet">
-	    <link href = "firechat-overload.css" rel = "stylesheet">
 
-        <script type="text/javascript">
-            function refreshSyntaxColors() {
-                var l = document.getElementById("Language").value;
-                firepad.codeMirror_.setOption("mode", l);
-                var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
-                myRootRef.set(l);
-            }
-        </script>
+	   
+		<!--CUSTOM PAGE CSS -->
+        
 	</head>
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
@@ -146,11 +144,12 @@ function l($l) {
     		<div id="firechat-wrapper"> </div>
         </div>
 
- 	<script type='text/javascript'>
-        var chatRef = new Firebase('https://firechat-codium.firebaseio.com/chat');
-      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+ 	 
+      <script type="text/javascript">
+        var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+        var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
       //chat.setUser('<user-id>', '<display-name>');
-  	</script>
+    </script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
@@ -192,6 +191,13 @@ function l($l) {
 			                           streamCreatedHandler);
 
 		</script>
-		 
+     <script type="text/javascript">
+            function refreshSyntaxColors() {
+                var l = document.getElementById("Language").value;
+                firepad.codeMirror_.setOption("mode", l);
+                var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
+                myRootRef.set(l);
+            }
+        </script>
 	</body>
 </html>
