@@ -28,7 +28,7 @@ class User {
 
     function hosting() {
         $mysql = getDB();
-        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end`,`open`,`page` FROM `classes` WHERE `owner` = ?");
+        $stmt = $mysql->prepare("SELECT `id`,`name`,`start`,`end`,`open`,`page`,`tok` FROM `classes` WHERE `owner` = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
@@ -38,28 +38,29 @@ class User {
         $end = NULL;
         $open = NULL;
         $page = NULL;
-        $stmt->bind_result($id, $name, $start, $end, $open, $page);
+        $tok = NULL;
+        $stmt->bind_result($id, $name, $start, $end, $open, $page, $tok);
 
         $classes = array();
         while($stmt->fetch()) {
-            array_push($classes, new Course($id, $name, $this, $start, $end, $open, $page));
+            array_push($classes, new Course($id, $name, $this, $start, $end, $open, $page, $tok));
         }
         $stmt->close();
         return $classes;
     }
 
-    function hostCourse($name, $start, $end, $open) {
+    function hostCourse($name, $start, $end, $open, $tok) {
         $mysql = getDB();
 
-        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?)");
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?, ?)");
         $o = $open ? 1 : 0;
         $hash = bin2hex(openssl_random_pseudo_bytes(5));
-        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $stmt->close();
 
         $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
-        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $id = NULL;
         $stmt->bind_result($id);
@@ -69,21 +70,21 @@ class User {
         }
         $stmt->close();
 
-        return new Course($id, $name, $this, $start, $end, $open, $hash);
+        return new Course($id, $name, $this, $start, $end, $open, $hash, $tok);
     }
 
-    function hostCourseCustom($name, $start, $end, $open, $page) {
+    function hostCourseCustom($name, $start, $end, $open, $page, $tok) {
         $mysql = getDB();
 
-        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?)");
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?, ?)");
         $o = $open ? 1 : 0;
         $hash = $page;
-        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $stmt->close();
 
         $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
-        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $id = NULL;
         $stmt->bind_result($id);
@@ -93,7 +94,7 @@ class User {
         }
         $stmt->close();
 
-        return new Course($id, $name, $this, $start, $end, $open, $hash);
+        return new Course($id, $name, $this, $start, $end, $open, $hash, $tok);
     }
 
     function startSession() {
@@ -114,7 +115,7 @@ class User {
 
 class Course {
 
-    function __construct($id, $name, $owner, $start, $end, $open, $page) {
+    function __construct($id, $name, $owner, $start, $end, $open, $page, $tok) {
         $this->id = $id;
         $this->name = $name;
         $this->owner = $owner;
@@ -123,6 +124,7 @@ class Course {
         $this->end = strtotime($end);
         $this->open = $open;
         $this->page = $page;
+        $this->tok = $tok;
     }
 
     function enrolled() {
@@ -344,7 +346,7 @@ function doesUserExist($email) {
 function getCourse($id) {
     $mysql = getDB();
 
-    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`page` FROM `classes` WHERE `id` = ?");
+    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`page`,`tok` FROM `classes` WHERE `id` = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 
@@ -354,19 +356,20 @@ function getCourse($id) {
     $end = NULL;
     $open = NULL;
     $page = NULL;
-    $stmt->bind_result($name, $owner, $start, $end, $open, $page);
+    $tok = NULL;
+    $stmt->bind_result($name, $owner, $start, $end, $open, $page, $tok);
     if(!$stmt->fetch()) {
         $stmt->close();
         return null;
     }
     $stmt->close();
-    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page);
+    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page, $tok);
 }
 
 function getCourseByPage($page) {
     $mysql = getDB();
 
-    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`id` FROM `classes` WHERE `page` = ?");
+    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`id`,`tok` FROM `classes` WHERE `page` = ?");
     $stmt->bind_param("s", $page);
     $stmt->execute();
 
@@ -376,13 +379,14 @@ function getCourseByPage($page) {
     $end = NULL;
     $open = NULL;
     $id = NULL;
-    $stmt->bind_result($name, $owner, $start, $end, $open, $id);
+    $tok = NULL;
+    $stmt->bind_result($name, $owner, $start, $end, $open, $id, $tok);
     if(!$stmt->fetch()) {
         $stmt->close();
         return null;
     }
     $stmt->close();
-    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page);
+    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page, $tok);
 }
 
 function addUser($fname, $lname, $email, $pass) {
