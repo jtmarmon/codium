@@ -90,6 +90,11 @@ if(isset($_POST['name'])) {
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Codium</a>
         </div>
+        <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav navbar-right">
+             <li><?php echo $user->fname . " " . $user->lname; ?></li>
+             </ul>
+         </div>
       </div>
     </div>
 
@@ -133,8 +138,12 @@ if(isset($_POST['name'])) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
-                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Get Class List</a></td>';
+                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Show Class List</a></td>';
                       echo "</tr>";
+
+                      echo '<div class="pop-up">';
+                      echo 'hi';
+                      echo '</div>';
                     }
                   }
                 ?>
@@ -146,7 +155,8 @@ if(isset($_POST['name'])) {
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th width="60%">Class Name</th>
+                  <th width="40%">Class Name</th>
+                  <th width="20%">Teacher</th>
                   <th width="20%">Enrolled</th>
                   <th width="20%">Class List</th>
                 </tr>
@@ -156,14 +166,15 @@ if(isset($_POST['name'])) {
                   $courses = $user->enrolled();
                   if(count($courses) == 0) {
                     echo "<tr>";
-                    echo '<td colspan="3">You are not hosting any courses :(</td>';
+                    echo '<td colspan="4">You are not enrolled in any courses :(</td>';
                     echo "</tr>";
                   } else {
                     foreach($courses as $course) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
+                      echo "<td>" . $course->owner->fname . " " . $course->owner->lname . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
-                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Get Class List</a></td>';
+                      echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Show Class List</a></td>';
                       echo "</tr>";
                     }
                   }

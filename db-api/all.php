@@ -244,7 +244,7 @@ function getCourse($id) {
         return null;
     }
     $stmt->close();
-    return new Course($id, $name, $owner, $start, $end, $open);
+    return new Course($id, $name, getUserByID($owner), $start, $end, $open);
 }
 
 function addUser($fname, $lname, $email, $pass) {

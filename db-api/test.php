@@ -15,5 +15,8 @@ require_once "all.php";
 //getCourse(1)->invite("gregthegeek2@optonline.net");
 //echo getCourse(1)->isEnrolled(getUserByID(1)) ? 'yes' : 'no';
 // echo getCourse(1)->getFirebaseIDFor(getUserByID(1));
+//echo var_dump(getUserByHash($_COOKIE['hash'])->enrolled());
+//echo var_dump(getUserById(1)->enrolled());
+//echo var_dump(getCourse(1));
 
 ?>
