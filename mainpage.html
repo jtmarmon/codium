@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
+		<link href = "mainpage.css" rel = "stylesheet">
+		<script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
+		
+		    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+         <script src="codemirror/mode/javascript/javascript.js"></script>
+
+
+	    <!-- CODEMIRROR: Download from http://codemirror.net/codemirror.zip -->
+	    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+	    <script src="codemirror/lib/codemirror.js"></script>
+
+	    <!-- Download from http://www.firepad.io/firepad.zip -->
+	    <link rel="stylesheet" href="firepad/firepad.css" />
+	    <script src="firepad/firepad.js"></script>
+	</head>
+	<body>
+		<h1 id = "welcome-heading">Welcome to class: </h1> <!-- LOAD CLASSNAME FROM PHP TABLES-->
+		<div id = "tokbox"> </div>
+		<h3 id = "write-some-code"> Write some code!</h3>
+		<div id ="firepad"></div>
+
+
+ 	
+    <script>
+      var firepadRef = new Firebase('http://codium.firebaseio.com');
+      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: 'javascript'});
+      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+     
+    </script>
+
+    </script>
+    <script type="text/javascript">
+			
+			  var apiKey    = "44698282";
+			  var sessionId = "1_MX40NDY5ODI4Mn5-U2F0IE1hciAyMiAxNDozMToxMSBQRFQgMjAxNH4wLjU3MDgyNDR-";
+			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1jMWMxMDU3MDYyZjk4OTdmOWRmMzViMmQxY2FlYjE4ZjU4ZDA4MjBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRZNU9ESTRNbjUtVTJGMElFMWhjaUF5TWlBeE5Eb3pNVG94TVNCUVJGUWdNakF4Tkg0d0xqVTNNRGd5TkRSLSZjcmVhdGVfdGltZT0xMzk1NTI2MjQxJm5vbmNlPTAuMzQ0MTkyNjUwMzExOTg2ODcmZXhwaXJlX3RpbWU9MTM5NTUyOTgyMCZjb25uZWN0aW9uX2RhdGE9"; //generate from PHP script
+			 
+			  function sessionConnectedHandler (event) {
+			  	//wrap this code in "if is teacher"
+			     session.publish( publisher ); 
+			     subscribeToStreams(event.streams);
+			  }
+			  function subscribeToStreams(streams) {
+			    for (var i = 0; i < streams.length; i++) {
+			        var stream = streams[i];
+			        if (stream.connection.connectionId
+			               != session.connection.connectionId) {
+			        	//wrap this code in if isn't teacher
+			            session.subscribe(stream, {width:400, height:400});
+			        }
+			    }
+			  }
+			  function streamCreatedHandler(event) {
+			    subscribeToStreams(event.streams);
+			  }
+			 
+			  var publisher = TB.initPublisher(apiKey,  "tokbox");
+			  var session   = TB.initSession(sessionId);
+			 
+			  session.connect(apiKey, token);
+			  session.addEventListener("sessionConnected",
+			                           sessionConnectedHandler);
+			 
+			  session.addEventListener("streamCreated",
+			                           streamCreatedHandler);
+
+		</script>
+	</body>
+</html>
