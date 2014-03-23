@@ -150,18 +150,18 @@ if(!$course->isEnrolled($user)) {
         </div>
 
  	 
-      <script type='text/javascript'>
+     <script type='text/javascript'>
            var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
             var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+            var chat2 = new Firechat(chatRef);
+            var id = null;
             var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
               if (user) {
-                chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(id){
-                  alert(id);
+                chat2.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
+                   chat2.enterRoom(passedid);
                 });
                 chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-                setTimeout(function() {
-                  chat._chat.enterRoom('');
-                }, 500);
+                
               } else {
                 simpleLogin.login('anonymous');    
               }
@@ -175,7 +175,6 @@ if(!$course->isEnrolled($user)) {
      
     </script>
     <script type="text/javascript">
-			
 			  var apiKey    =  "44698282";
 			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
 			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
@@ -197,6 +196,7 @@ if(!$course->isEnrolled($user)) {
 			  function streamCreatedHandler(event) {
 			    subscribeToStreams(event.streams);
 			  }
+     
 			 
 			  var publisher = TB.initPublisher(apiKey,  "tokbox");
 			  var session   = TB.initSession(sessionId);

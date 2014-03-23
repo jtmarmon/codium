@@ -170,21 +170,26 @@ function l($l) {
 		
 	}
     </script>
- 	<script type='text/javascript'>
-		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
-    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-    var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-      if (user) {
-        chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-        setTimeout(function() {
-          chat._chat.enterRoom('-Iy1N3xs4kN8iALHV0QA');
-        }, 500);
-      } else {
-        simpleLogin.login('anonymous');    
-      }
-    });
-    Firechat.enterRoom("Bob's Room");
-  	</script>
+ 	
+     <script type='text/javascript'>
+           var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+            var chat2 = new Firechat(chatRef);
+            var id = null;
+            var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
+              if (user) {
+                chat2.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
+                   chat2.enterRoom(passedid);
+                });
+                chat.setUser(user.id, '<?php echo $user->getName(); ?>');
+                
+              } else {
+                simpleLogin.login('anonymous');    
+              }
+            });
+
+    </script>
+
     <script type = "text/javascript">
     //THIS IS THE FIRPAD FOR A REGULAR USER
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
