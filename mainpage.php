@@ -76,8 +76,10 @@ function l($l) {
 	    <script src="codemirror/lib/codemirror.js"></script>
         <?php
             $modes = array('clojure', 'cobol', 'commonlisp', 'css', 'd', 'erlang', 'go', 'groovy', 'haskell', 'javascript', 'lua', 'octave', 'pascal', 'perl', 'php', 'python', 'r', 'ruby', 'scheme', 'smalltalk', 'sql');
+            foreach($modes as $mode) {
+                echo '<script src="codemirror/mode/' . $mode . '/' . $mode . '.js"></script>';
+            }
         ?>
-        <script src="codemirror/mode/javascript/javascript.js"></script> <!-- TODO: include all languages -->
 	    <script src="firepad/firepad.js"></script>
 	    <script src="firechat/firechat-default.js"></script>
 		<!--CUSTOM PAGE CSS -->
@@ -116,10 +118,11 @@ function l($l) {
             <h3 id="write-some-code">Write some code.</h3>
     		<form action="" id="language-form">
     				<select name="Language" id="Language" onchange="refreshSyntaxColors()">
-    					<option value="javascript"<?php echo l('javascript'); ?>>JavaScript</option>
-    					<option value="css"<?php echo l('css'); ?>>CSS</option>
-    					<option value="htmlmixed"<?php echo l('htmlmixed'); ?>>HTML</option>
-    					<option value="php"<?php echo l('php'); ?>>PHP</option>
+                        <?php
+                        foreach($modes as $mode) {
+                            echo '<option value="' . $mode . '"' . l($mode) . '>' . $mode . '</option>';
+                        }
+                        ?>
     				</select>
     		</form>
             <div id="firepad"></div>
@@ -131,18 +134,25 @@ function l($l) {
         </div>
 
  	<script type='text/javascript'>
-		       var chatRef = new Firebase('https://firechat-codium.firebaseio.com'); // TODO change
-    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-    var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-      if (user) {
-        chat.setUser(user.id, 'Anonymous' + user.id.substr(0, 8));
-        setTimeout(function() {
-          chat._chat.enterRoom(<?php echo  ?>);
-        }, 500);
-      } else {
-        simpleLogin.login('anonymous');    
-      }
-    });
+        /*var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
+        var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));*/
+        /*var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
+            if (user) {
+                chat.setUser(user.id, 'Anonymous' + user.id.substr(0, 8));
+                setTimeout(function() {
+                    chat._chat.enterRoom(<?php echo 'chat-' . $course->id; ?>);
+                }, 500);
+            } else {
+                simpleLogin.login('anonymous');    
+            }
+        });*/
+        var base = new Firebase('https://firechat-codium.firebaseio.com');
+        var chat = new Firechat(base);
+        chat.setUser(<?php echo "'" . $user->id . "'"; ?>, <?php echo "'" . $user->getName() . "'"; ?>);
+        chat.createRoom(<?php echo $course->id; ?>, "public", null);
+        var chatUI = new FirechatUI(base, document.getElementById("firechat-wrapper"));
+        chatUI.setUser(<?php echo "'" . $user->id . "'"; ?>, <?php echo "'" . $user->getName() . "'"; ?>);
+        chatUI._chat.enterRoom(<?php echo $course->id; ?>);
   	</script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
