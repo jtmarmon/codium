@@ -1,3 +1,41 @@
+<?php
+
+require_once "Mobile_Detect.php";
+if((new Mobile_Detect)->isMobile()) {
+  echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
+  die();
+}
+
+if(!isset($_GET['id'])) {
+    header("Location: index.html");
+    die();
+}
+
+if(!isset($_COOKIE['hash'])) {
+  header("Location: log-in.php?error=You%20must%20be%20logged%20in%20to%20see%20this%20page.&redirect=mainpage.php?id=" . $_GET['id']);
+  die();
+}
+
+require_once "db-api/all.php";
+
+$user = getUserByHash($_COOKIE['hash']);
+if($user == NULL) {
+  header("Location: log-in.php?error=Your%20session%20has%20expired.");
+  die();
+}
+
+$course = getCourse($_GET['id']);
+if($course == NULL) {
+    header("Location: index.html");
+    die();
+}
+
+if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
+    header("Location: denied.php?id=" . $course->id);
+    die();
+}
+
+?>
 <html>
 	<head>
 		<meta charset = "utf-8">
@@ -22,39 +60,6 @@
 		<!--CUSTOM PAGE CSS -->
 	    <link href = "mainpage.css" rel = "stylesheet">
 	    <link href = "firechat-overload.css" rel = "stylesheet">
-	    <style type = "text/css">
-	    .navbar a
-	    {
-	    	color:white !important;
-	    }
-	    .navbar a:hover
-	    {
-	    	color:#7D7D7D !important;
-	    }
-	    #firechat-wrapper
-	    {
-			display:inline-block;
-			width:50%;
-
-	    }
-	    #firepad
-	    {
-	    	margin-right: 15%;
-	    	width:50%;
-	    	padding-right:none;
-	    	display:inline-block;
-	    }
-	    #language-form
-	    {
-	    	position: absolute;
-	    	float:left;
-	    	top:70%;
-	    	left:43%;
-	    }
-
-	    </style>
-
-
 	</head>
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
@@ -66,40 +71,26 @@
     </div>
 
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to class: </h1> <!-- TODO LOAD CLASSNAME FROM PHP -->
+		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php ?></h1> <!-- TODO LOAD CLASSNAME FROM PHP -->
 		<div id = "tokbox"> </div>
-		<h3 id = "write-some-code" style = "display:inline; margin-left: 17%;"> Write some code!</h3>
-		<h3 id = "write-some-code" style = "display:inline; margin-left: 35%;"> Chat with your classmates.</h3>
-		
 
-		
+        <div id="col-left">
+            <h3 id="write-some-code">Write some code.</h3>
+    		<form action="" id="language-form">
+    				<select name="Language">
+    					<option value="JavaScript">JavaScript</option>
+    					<option value="CSS">CSS</option>
+    					<option value="HTML">HTML</option>
+    					<option value="PHP">PHP</option>
+    				</select>
+    		</form>
+            <div id="firepad"></div>
+        </div>
 
-        <!--
-		<div class="dropdown">
-  			<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-   			 	Language
-    			<span class="caret"></span>
-  			</button>
- 			 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-			    <li role="presentation" class="divider"></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-  				</ul>
-		</div> -->
-		<form action="" id = "language-form">
-				<select name="Language">
-					<option value="JavaScript">JavaScript</option>
-					<option value="CSS">CSS</option>
-					<option value="HTML">HTML</option>
-					<option value="PHP">PHP</option>
-				</select>
-		</form>
-		<div id ="firepad">
-		</div>
-
-		<div id = "firechat-wrapper"> </div>
+        <div id="col-right">
+            <h3 id="write-some-code">Chat with your classmates.</h3>
+    		<div id="firechat-wrapper"> </div>
+        </div>
 
  	<script type='text/javascript'>
 		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');

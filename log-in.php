@@ -4,6 +4,8 @@ if(isset($_GET['error'])) {
   $error = $_GET['error'];
 }
 
+$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : "dashboard.php";
+
 if(isset($_POST['email'], $_POST['pass'])/* && strlen($_POST['email']) > 0 && strlen($_POST['pass']) > 0*/) {
   require_once "db-api/all.php";
 
@@ -17,7 +19,7 @@ if(isset($_POST['email'], $_POST['pass'])/* && strlen($_POST['email']) > 0 && st
     $remember = isset($_POST['remember']) && ($_POST['remember'] == 'remember-me' || $_POST['remember'] == 'checked');
     $expiration = $remember ? time() + (60 * 60 * 24 * 30) : 0;
     setcookie('hash', $hash, $expiration, "/");
-    header("Location: dashboard.php");
+    header("Location: " . $redirect);
     die();
   }
 }
@@ -44,7 +46,7 @@ if(isset($_POST['fname'], $_POST['lname'], $_POST['emailr'], $_POST['passr'])) {
     $hash = $user->startSession();
     $expiration = $remember ? time() + (60 * 60 * 24 * 30) : 0;
     setcookie('hash', $hash, $expiration, "/");
-    header("Location: dashboard.php");
+    header("Location: " . $redirect);
     die();
   }
 }
