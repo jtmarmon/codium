@@ -1,5 +1,5 @@
 <?php
-    require_once 'opentok/OpenTokSDK.php';
+    /*require_once 'opentok/OpenTokSDK.php';
 
     require_once 'opentok/OpenTokArchive.php';
 
@@ -12,7 +12,7 @@
     } else {
         $session = $apiObj->create_session();
         $sessionId = $session->getSessionId();
-    }
+    }*/
     require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
@@ -147,9 +147,9 @@ function l($l) {
         </div>
 
  	<script type='text/javascript'>
-        var chatRef = new Firebase('https://<your-firebase>.firebaseio.com/chat');
+        var chatRef = new Firebase('https://firechat-codium.firebaseio.com/chat');
       var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-      chat.setUser('<user-id>', '<display-name>');
+      //chat.setUser('<user-id>', '<display-name>');
   	</script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
