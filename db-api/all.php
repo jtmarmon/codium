@@ -157,9 +157,9 @@ class Course {
         $stmt->execute();
         $stmt->close();
 
-        require_once "../sendgrid/SendGrid.php";
-        require_once "../sendgrid/SendGrid/Email.php";
-        require_once "../sendgrid/info.php";
+        require_once "sendgrid/SendGrid.php";
+        require_once "sendgrid/SendGrid/Email.php";
+        require_once "sendgrid/info.php";
         $sendgrid = new SendGrid($user, $pass);
         $mail = new SendGrid\Email();
         $mail->setFrom("no-reply@codium.io");

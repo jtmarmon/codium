@@ -40,7 +40,7 @@ if(isset($_POST['name'])) {
       }
     }
 
-    echo $course->getTeacherURL();
+    //echo $course->getTeacherURL();
     header("Location: " . $course->getTeacherURL());
     die();
   }

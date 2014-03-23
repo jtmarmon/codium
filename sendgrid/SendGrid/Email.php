@@ -2,8 +2,8 @@
 
 namespace SendGrid;
 
-require_once "../sendgrid/Smtpapi.php";
-require_once "../sendgrid/Smtpapi/Header.php";
+require_once "sendgrid/Smtpapi.php";
+require_once "sendgrid/Smtpapi/Header.php";
 
 class Email {
 

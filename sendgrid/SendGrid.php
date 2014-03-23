@@ -1,6 +1,6 @@
 <?php
 
-require_once "../sendgrid/Unirest.php";
+require_once "sendgrid/Unirest.php";
 
 class SendGrid {
   const VERSION = "2.0.3";
