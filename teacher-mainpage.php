@@ -24,7 +24,7 @@ if($user == NULL) {
   die();
 }
 
-$course = getCourse($_GET['id']);
+$course = getCourseByPage($_GET['id']);
 if($course == NULL) {
     header("Location: index.html");
     die();
