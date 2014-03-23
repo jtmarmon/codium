@@ -52,22 +52,41 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
       <div class="container-fluid">
         <div  class="navbar-header">
-          <a class="navbar-brand"  href="#">Class: </a>
-        </div>
-        <div  class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-            </ul>
-        </div>
+          <a class="navbar-brand"  href="#">Class: <!--TODO LOAD CLASSNAME FROM PHP, TODO ADD NAME TO END OF TOOLBAR--> </a>
       </div>
+        </div>
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to class: </h1> <!-- LOAD CLASSNAME FROM PHP TABLES-->
+
+    </div>
+		<h1 class = "page-header" style = "text-align:center;">Welcome to class: </h1> <!-- TODO LOAD CLASSNAME FROM PHP -->
 		<div id = "tokbox"> </div>
 		<h3 id = "write-some-code" style = "display:inline; margin-left: 17%;"> Write some code!</h3>
-		<h3 id = "write-some-code" style = "display:inline; margin-left: 400px;"> Chat with your classmates.</h3>
+		<h3 id = "write-some-code" style = "display:inline; margin-left: 35%;"> Chat with your classmates.</h3>
+		
+
+		<form action="">
+			<select name="Language">
+				<option value="JavaScript">JavaScript</option>
+				<option value="CSS">CSS</option>
+				<option value="HTML">HTML</option>
+				<option value="PHP">PHP</option>
+			</select>
+		</form>
+
+        <!--
+		<div class="dropdown">
+  			<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+   			 	Language
+    			<span class="caret"></span>
+  			</button>
+ 			 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+			    <li role="presentation" class="divider"></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  				</ul>
+		</div> -->
 		<div id ="firepad"></div>
 		<div id = "firechat-wrapper"> </div>
 
@@ -86,8 +105,8 @@
     });
   	</script>
     <script type = "text/javascript">
-      var firepadRef = new Firebase('http://codium.firebaseio.com');
-      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: 'javascript'});
+      var firepadRef = new Firebase('http://codium.firebaseio.com'); //TODO append personal firebase URL to parameter
+      var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: 'javascript'}); //TODO get mode from dropdown
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
      
     </script>
@@ -95,10 +114,10 @@
 			
 			  var apiKey    = "44698282";
 			  var sessionId = "1_MX40NDY5ODI4Mn5-U2F0IE1hciAyMiAxNDozMToxMSBQRFQgMjAxNH4wLjU3MDgyNDR-";
-			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1jMWMxMDU3MDYyZjk4OTdmOWRmMzViMmQxY2FlYjE4ZjU4ZDA4MjBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRZNU9ESTRNbjUtVTJGMElFMWhjaUF5TWlBeE5Eb3pNVG94TVNCUVJGUWdNakF4Tkg0d0xqVTNNRGd5TkRSLSZjcmVhdGVfdGltZT0xMzk1NTI2MjQxJm5vbmNlPTAuMzQ0MTkyNjUwMzExOTg2ODcmZXhwaXJlX3RpbWU9MTM5NTUyOTgyMCZjb25uZWN0aW9uX2RhdGE9"; //generate from PHP script
+			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1jMWMxMDU3MDYyZjk4OTdmOWRmMzViMmQxY2FlYjE4ZjU4ZDA4MjBhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDQwTkRZNU9ESTRNbjUtVTJGMElFMWhjaUF5TWlBeE5Eb3pNVG94TVNCUVJGUWdNakF4Tkg0d0xqVTNNRGd5TkRSLSZjcmVhdGVfdGltZT0xMzk1NTI2MjQxJm5vbmNlPTAuMzQ0MTkyNjUwMzExOTg2ODcmZXhwaXJlX3RpbWU9MTM5NTUyOTgyMCZjb25uZWN0aW9uX2RhdGE9"; //TODO generate from PHP script (token & session id)
 			 
 			  function sessionConnectedHandler (event) {
-			  	//wrap this code in "if is teacher"
+			  	//TODO wrap this code in "if is teacher"
 			     session.publish(publisher); 
 			     subscribeToStreams(event.streams);
 			  }
@@ -107,7 +126,7 @@
 			        var stream = streams[i];
 			        if (stream.connection.connectionId
 			               != session.connection.connectionId) {
-			        	//wrap this code in if isn't teacher
+			        	//TODO wrap this code in if isn't teacher
 			            session.subscribe(stream, {width:700, height:700});
 			        }
 			    }
