@@ -7,6 +7,7 @@
 .firepad {
   text-align: left;
   line-height: normal;
+  width:100%;
 }
 
 .firepad .CodeMirror {
@@ -17,11 +18,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width:50%;
+  width:100%;
   background-color:#424445;
   color:white;
   border: 5px solid;
+  padding-right: 0px;
   border-color: #5cb85c;
+  display:inline;
 }
 
 .firepad-richtext .CodeMirror {
