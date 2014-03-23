@@ -171,7 +171,7 @@ function l($l) {
 	}
     </script>
  	<script type='text/javascript'>
-		       var chatRef = new Firebase('https://firechat-codium.firebaseio.com');
+		       var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
     var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
       if (user) {
