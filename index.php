@@ -1,4 +1,15 @@
+<?php
 
+if(isset($_COOKIE['hash'])) {
+  require_once "db-api/all.php";
+  $user = getUserByHash($_COOKIE['hash']);
+  if($user != NULL) {
+    header("Location: dashboard.php");
+    die();
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
