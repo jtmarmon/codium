@@ -214,5 +214,5 @@ body {
 }
 
 .error {
-  color: #F00;
+  color: #F00 !important;
 }
