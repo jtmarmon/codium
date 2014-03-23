@@ -96,6 +96,7 @@ if(!$course->isEnrolled($user)) {
        <script src="firepad/firepad.js"></script>
       <link rel="stylesheet" href="firechat/firechat-default.css"/>
       <script src="firechat/firechat-default.js"></script>
+   
 	    <!--OPENTOK-->
 
      
@@ -151,17 +152,21 @@ if(!$course->isEnrolled($user)) {
  	 
       <script type='text/javascript'>
            var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
-    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-    var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-      if (user) {
-        chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-        setTimeout(function() {
-          chat._chat.enterRoom('-Iy1N3xs4kN8iALHV0QA');
-        }, 500);
-      } else {
-        simpleLogin.login('anonymous');    
-      }
-    });
+            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+            var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
+              if (user) {
+                chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(id){
+                  alert(id);
+                });
+                chat.setUser(user.id, '<?php echo $user->getName(); ?>');
+                setTimeout(function() {
+                  chat._chat.enterRoom('');
+                }, 500);
+              } else {
+                simpleLogin.login('anonymous');    
+              }
+            });
+
     </script>
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);

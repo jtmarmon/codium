@@ -175,11 +175,7 @@ function l($l) {
     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
     var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
       if (user) {
-<<<<<<< HEAD
         chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-=======
-        chat.setUser(user.id, 'Anonymous' + user.id.substr(0, 8));
->>>>>>> FETCH_HEAD
         setTimeout(function() {
           chat._chat.enterRoom('-Iy1N3xs4kN8iALHV0QA');
         }, 500);
@@ -187,6 +183,7 @@ function l($l) {
         simpleLogin.login('anonymous');    
       }
     });
+    Firechat.enterRoom("Bob's Room");
   	</script>
     <script type = "text/javascript">
     //THIS IS THE FIRPAD FOR A REGULAR USER
