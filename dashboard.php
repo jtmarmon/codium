@@ -84,6 +84,12 @@ if(isset($_POST['name'])) {
         document.getElementById('pop-up-bg').style.display = "none";
       }
     </script>
+    <script type="text/javascript">
+    function updateURL()
+    {
+      document.getElementById('customURL').innerHTML = "www.codium.io/" + document.getElementById('customURLInput').value;
+    }
+    </script>
         <style type = "text/css">
           .navbar
           {
@@ -99,6 +105,7 @@ if(isset($_POST['name'])) {
         color: #DBDBDB !important;
       }
       </style>
+
   </head>
 
   <body>
@@ -203,6 +210,8 @@ if(isset($_POST['name'])) {
                 <p align="center">Please enter the email address of each student on a separate line.</p>
                 <textarea id="class-list" style = "margin-top:5px; text-align:center;" name="class-list"> </textarea>
               </div>
+              <input type="text" id = "customURLInput" style = "display:inline; width:300px;" class="form-control-nospace" onkeyup = "updateURL()" placeholder="Custom URL (Optional)">
+              <h6 id = "customURL"> www.codium.com/ </h6>
               <input type="submit" class="btn btn-md btn-success" value="Start Class" />
             </form>
           </div>
