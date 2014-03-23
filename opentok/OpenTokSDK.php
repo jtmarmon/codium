@@ -131,6 +131,7 @@ class OpenTokSDK {
         $createSessionResult = $this->_do_request("/session/create", $properties);
         $createSessionXML = @simplexml_load_string($createSessionResult, 'SimpleXMLElement', LIBXML_NOCDATA);
         if(!$createSessionXML) {
+            echo $createSessionResult;
             throw new OpenTokException("Failed to create session: Invalid response from server");
         }
 
