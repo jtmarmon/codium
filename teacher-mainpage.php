@@ -145,7 +145,7 @@ if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
     <script type = "text/javascript">
     //FIREPAD FROM TEACHER SELECTION
     function studentFirebase(selectionID)
-      var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
+      var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/'"?> + selectionID);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
      
