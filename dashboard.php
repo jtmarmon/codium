@@ -94,8 +94,6 @@ if(isset($_POST['name'])) {
           <div id="start-class">
             <form method="post" action="#">
               <input type="text" class="form-control" placeholder="Class name" id="name" name="name" />
-              <!--<input type="text" class="form-control date" placeholder="Start Date" id="start" name="start" />
-              <input type="text" class="form-control date" placeholder="End Date" id="end" name="end" />-->
               <input type="checkbox" id="closed" name="closed" onchange="checkOpen()" value="on" />
               <label for="closed">Limit those who can enroll?</label>
               <div id="students">
@@ -112,8 +110,6 @@ if(isset($_POST['name'])) {
               <thead>
                 <tr>
                   <th>Class Name</th>
-                  <th>Start</th>
-                  <th>End</th>
                   <th>Enrolled</th>
                   <th>Class List</th>
                 </tr>
@@ -123,14 +119,12 @@ if(isset($_POST['name'])) {
                   $courses = $user->hosting();
                   if(count($courses) == 0) {
                     echo "<tr>";
-                    echo '<td colspan="5">You are not hosting any courses :(</td>';
+                    echo '<td colspan="3">You are not hosting any courses :(</td>';
                     echo "</tr>";
                   } else {
                     foreach($courses as $course) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
-                      echo "<td>" . date('F j, Y', $course->start) . "</td>";
-                      echo "<td>" . date('F j, Y', $course->end) . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
                       echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Get Class List</a></td>';
                       echo "</tr>";
@@ -146,8 +140,6 @@ if(isset($_POST['name'])) {
               <thead>
                 <tr>
                   <th>Class Name</th>
-                  <th>Start</th>
-                  <th>End</th>
                   <th>Enrolled</th>
                   <th>Class List</th>
                 </tr>
@@ -157,14 +149,12 @@ if(isset($_POST['name'])) {
                   $courses = $user->enrolled();
                   if(count($courses) == 0) {
                     echo "<tr>";
-                    echo '<td colspan="5">You are not hosting any courses :(</td>';
+                    echo '<td colspan="3">You are not hosting any courses :(</td>';
                     echo "</tr>";
                   } else {
                     foreach($courses as $course) {
                       echo "<tr>";
                       echo "<td>" . $course->name . "</td>";
-                      echo "<td>" . date('F j, Y', $course->start) . "</td>";
-                      echo "<td>" . date('F j, Y', $course->end) . "</td>";
                       echo "<td>" . count($course->enrolled()) . "</td>";
                       echo '<td><a href="class-list.php?id=' . $course->id . '" class="btn btn-md btn-success">Get Class List</a></td>';
                       echo "</tr>";
