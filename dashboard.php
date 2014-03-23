@@ -1,5 +1,11 @@
 <?php
 
+require_once "Mobile_Detect.php";
+if((new Mobile_Detect)->isMobile()) {
+  echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
+  die();
+}
+
 if(!isset($_COOKIE['hash'])) {
   header("Location: log-in.php?error=You%20must%20be%20logged%20in%20to%20see%20this%20page.");
   die();
