@@ -211,7 +211,8 @@ class Course {
 
 function getDB() {
     require_once "db-info.php";
-    $mysql = new mysqli($ip, $user, $pass, $db);
+    $data = new DB();
+    $mysql = new mysqli($data->ip, $data->user, $data->pass, $data->db);
     if($mysql->connect_error) {
         return null;
     }

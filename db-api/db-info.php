@@ -1,8 +1,14 @@
 <?php
 
-$ip = "localhost";
-$user = "dbuser";
-$pass = "Makelotsofmoney7";
-$db = "codium";
+class DB {
+
+    function __construct() {
+        $this->ip = '127.0.0.1';
+        $this->user = 'root';
+        $this->pass = 'codium7a';
+        $this->db = 'codium';
+    }
+
+}
 
 ?>
