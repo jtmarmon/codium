@@ -198,11 +198,11 @@ body {
   top: -3px;
 }
 
-.table tr:not(#nothing):hover td {
+.table:not(.pop-table) tr:not(#nothing):hover td {
   background-color: #D3F2D3 !important;
   cursor: pointer;
 }
 
-/*.table tr:hover td a {
-  background-color: #000;
-}*/
+.no-accept {
+  background-color: #FF8383;
+}

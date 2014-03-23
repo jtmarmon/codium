@@ -118,7 +118,7 @@ if(isset($_POST['name'])) {
         echo '<div class="pop-up" id="host-' . $course->id . '">';
           echo '<a class="pop-up-close" onclick="hide()"><span>x</span></a>';
           echo '<div class="pop-up-text">';
-            echo '<table class="table table-striped">';
+            echo '<table class="table table-striped pop-table">';
               echo '<thead>';
                 echo '<tr>';
                   echo '<th>Name</th>';
@@ -126,16 +126,22 @@ if(isset($_POST['name'])) {
                 echo '</tr>';
               echo '</thead>';
               echo '<tbody>';
-                $students = $course->enrolled();
+                $students = $course->invited();
                 if(count($students) == 0) {
                   echo '<tr>';
-                    echo '<td colspan="2">No students enrolled :(</td>';
+                    echo '<td colspan="2">No students enrolled or invited :(</td>';
                   echo '</tr>';
                 } else {
                   foreach($students as $student) {
+                    $studentu = getUserByEmail($student);
                     echo '<tr>';
-                      echo '<td>' . $student->fname . ' ' . $student->lname . '</td>';
-                      echo '<td>' . $student->email . '</td>';
+                    if($studentu == NULL) {
+                      echo '<td class="no-accept" title="This user has not yet accepted your invitation.">Unknown</td>';
+                      echo '<td class="no-accept" title="This user has not yet accepted your invitation.">' . $student . '</td>';
+                    } else {
+                      echo '<td>' . $studentu->fname . ' ' . $studentu->lname . '</td>';
+                      echo '<td>' . $studentu->email . '</td>';
+                    }
                     echo '</tr>';
                   }
                 }
@@ -149,7 +155,7 @@ if(isset($_POST['name'])) {
       foreach($enrolled as $course) {
         echo '<div class="pop-up" id="enroll-' . $course->id . '">';
           echo '<div class="pop-up-text">';
-            echo '<table class="table table-striped">';
+            echo '<table class="table table-striped pop-table">';
               echo '<thead>';
                 echo '<tr>';
                   echo '<th>Name</th>';
@@ -212,9 +218,10 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($hosting as $course) {
-                      echo '<tr onclick="window.location=\'mainpage.html\'">'; // TODO: link to real mainpage
-                      echo "<td>" . $course->name . "</td>";
-                      echo "<td>" . count($course->enrolled()) . "</td>";
+                      $meta = ' onclick="window.location=\'mainpage.html\'"'; // TODO: link to real mainpage
+                      echo '<tr>';
+                      echo '<td' . $meta . '>' . $course->name . "</td>";
+                      echo '<td' . $meta . '>' . count($course->enrolled()) . "</td>";
                       echo '<td><a class="btn btn-md btn-success" onclick="show(\'host-' . $course->id . '\')">Show Class List</a></td>';
                       echo "</tr>";
                     }
@@ -242,10 +249,11 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($enrolled as $course) {
-                      echo '<tr onclick="window.location=\'mainpage.html\'">'; // TODO: link to real mainpage
-                      echo "<td>" . $course->name . "</td>";
-                      echo "<td>" . $course->owner->fname . " " . $course->owner->lname . "</td>";
-                      echo "<td>" . count($course->enrolled()) . "</td>";
+                      $meta = ' onclick="window.location=\'mainpage.html\'"'; // TODO: link to real mainpage
+                      echo '<tr>';
+                      echo '<td' . $meta . '>' . $course->name . "</td>";
+                      echo '<td' . $meta . '>' . $course->owner->fname . " " . $course->owner->lname . "</td>";
+                      echo '<td' . $meta . '>' . count($course->enrolled()) . "</td>";
                       echo '<td><a class="btn btn-md btn-success" onclick="show(\'enroll-' . $course->id . '\')">Show Class List</a></td>';
                       echo "</tr>";
                     }

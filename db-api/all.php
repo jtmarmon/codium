@@ -151,6 +151,24 @@ class Course {
         return "doc-" . $this->id . "-" . $user->id;
     }
 
+    function invited() {
+        $mysql = getDB();
+
+        $stmt = $mysql->prepare("SELECT `email` FROM `invited` WHERE `class` = ?");
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+
+        $email = NULL;
+        $emails = array();
+        $stmt->bind_result($email);
+        while($stmt->fetch()) {
+            array_push($emails, $email);
+        }
+        $stmt->close();
+
+        return $emails;
+    }
+
 }
 
 function getDB() {
@@ -214,6 +232,25 @@ function getUserByHash($hash) {
     }
     $stmt->close();
     return getUserByID($id);
+}
+
+function getUserByEmail($email) {
+    $mysql = getDB();
+
+    $stmt = $mysql->prepare("SELECT `id`,`fname`,`lname` FROM `users` WHERE `email` = LOWER(?)");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+
+    $id = NULL;
+    $fname = NULL;
+    $lname = NULL;
+    $stmt->bind_result($id, $fname, $lname);
+    if(!$stmt->fetch()) {
+        $stmt->close();
+        return null;
+    }
+    $stmt->close();
+    return new User($id, $fname, $lname, $email);
 }
 
 function doesUserExist($email) {
