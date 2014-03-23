@@ -25,7 +25,7 @@ if(isset($_POST['name'])) {
       }
     }
 
-    header("Location: http://www.google.com/"); // TODO: change to class page
+    header("Location: mainpage.php");
     die();
   }
 }
@@ -90,14 +90,6 @@ if(isset($_POST['name'])) {
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Codium</a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-            </ul>
-        </div>
       </div>
     </div>
 
@@ -124,9 +116,9 @@ if(isset($_POST['name'])) {
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Class Name</th>
-                  <th>Enrolled</th>
-                  <th>Class List</th>
+                  <th width="60%">Class Name</th>
+                  <th width="20%">Enrolled</th>
+                  <th width="20%">Class List</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,9 +146,9 @@ if(isset($_POST['name'])) {
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Class Name</th>
-                  <th>Enrolled</th>
-                  <th>Class List</th>
+                  <th width="60%">Class Name</th>
+                  <th width="20%">Enrolled</th>
+                  <th width="20%">Class List</th>
                 </tr>
               </thead>
               <tbody>

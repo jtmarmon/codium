@@ -121,3 +121,7 @@ body {
 #start-class .btn {
   display: block;
 }
+
+.navbar-fixed-top {
+  position: absolute;
+}
