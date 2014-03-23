@@ -21,8 +21,17 @@ if($user == NULL) {
 
 if(isset($_POST['name'])) {
   $closed = isset($_POST['closed']) && $_POST['closed'] == 'on';
-  if(!$closed || isset($_POST['class-list'])) {
-    $course = $user->hostCourse($_POST['name'], time(), time(), !$closed);
+  if($closed && !isset($_POST['class-list'])) {
+    $error = "Please open class or fill out class list.";
+  } else if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0 && doesPageExist($_POST['customURLInput'])) {
+    $error = "A class with that URL already exists.";
+  } else {
+    if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0) {
+      $page = $_POST['customURLInput'];
+      $course = $user->hostCourseCustom($_POST['name'], time(), time(), !$closed, $page);
+    } else {
+      $course = $user->hostCourse($_POST['name'], time(), time(), !$closed);
+    }
 
     if($closed) {
       $split = preg_split('/$\R?^/m', $_POST['class-list']);
@@ -202,6 +211,7 @@ if(isset($_POST['name'])) {
 
           <h3 class="sub-header">Start a class!</h3>
           <div id="start-class">
+            <?php if(isset($error)) echo '<p class="error">' . $error . '</p>' ?>
             <form method="post" action="#">
               <input type="text" class="form-control" placeholder="Class name" id="name" name="name" />
               <input type="checkbox" id="closed" name="closed" onchange="checkOpen()" value="on" />
@@ -210,7 +220,7 @@ if(isset($_POST['name'])) {
                 <p align="center">Please enter the email address of each student on a separate line.</p>
                 <textarea id="class-list" style = "margin-top:5px; text-align:center;" name="class-list"> </textarea>
               </div>
-              <input type="text" id = "customURLInput" style = "display:inline; width:300px;" class="form-control-nospace" onkeyup = "updateURL()" placeholder="Custom URL (Optional)">
+              <input type="text" id="customURLInput" name="customURLInput" style="display:inline; width:300px;" class="form-control-nospace" onkeyup = "updateURL()" placeholder="Custom URL (Optional)">
               <h6 id = "customURL"> www.codium.com/ </h6>
               <input type="submit" class="btn btn-md btn-success" value="Start Class" />
             </form>

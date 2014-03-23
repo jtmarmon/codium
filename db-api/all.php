@@ -72,6 +72,30 @@ class User {
         return new Course($id, $name, $this, $start, $end, $open, $hash);
     }
 
+    function hostCourseCustom($name, $start, $end, $open, $page) {
+        $mysql = getDB();
+
+        $stmt = $mysql->prepare("INSERT INTO `classes` VALUES(NULL, ?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?)");
+        $o = $open ? 1 : 0;
+        $hash = $page;
+        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->execute();
+        $stmt->close();
+
+        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
+        $stmt->bind_param("sissis", $name, $this->id, $start, $end, $o, $hash);
+        $stmt->execute();
+        $id = NULL;
+        $stmt->bind_result($id);
+        if(!$stmt->fetch()) {
+            // wat
+            die();
+        }
+        $stmt->close();
+
+        return new Course($id, $name, $this, $start, $end, $open, $hash);
+    }
+
     function startSession() {
         $mysql = getDB();
         $stmt = $mysql->prepare("INSERT INTO `sessions` VALUES(?, ?)");
@@ -207,6 +231,16 @@ class Course {
         return "http://codium.io/" . $this->page;
     }
 
+}
+
+function doesPageExist($page) {
+    $mysql = getDB();
+    $stmt = $mysql->prepare("SELECT * FROM `classes` WHERE `page` = ?");
+    $stmt->bind_param("s", $page);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    $stmt->close();
+    return $result;
 }
 
 function getDB() {
