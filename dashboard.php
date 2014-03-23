@@ -21,7 +21,7 @@ if($user == NULL) {
 
 if(isset($_POST['name'])) {
   $closed = isset($_POST['closed']) && $_POST['closed'] == 'on';
-  if($closed && !isset($_POST['class-list'])) {
+  if($closed && (!isset($_POST['class-list']) || strlen($_POST['class-list']) == 0)) {
     $error = "Please open class or fill out class list.";
   } else if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0 && doesPageExist($_POST['customURLInput'])) {
     $error = "A class with that URL already exists.";
@@ -40,6 +40,7 @@ if(isset($_POST['name'])) {
       }
     }
 
+    echo $course->getTeacherURL();
     header("Location: " . $course->getTeacherURL());
     die();
   }
