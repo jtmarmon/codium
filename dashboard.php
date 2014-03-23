@@ -65,6 +65,20 @@ if(isset($_POST['name'])) {
         }
       }
     </script>
+        <style type = "text/css">
+          .navbar
+          {
+            background-color: green;
+          }
+      .navbar a
+      {
+        color:white !important;
+      }
+      .navbar a:hover
+      {
+        color:#7D7D7D !important;
+      }
+      </style>
   </head>
 
   <body>
