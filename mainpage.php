@@ -37,13 +37,13 @@ if($user == NULL) {
   die();
 }
 
-$course = getCourse($_GET['id']);
+$course = getCourseByPage($_GET['id']);
 if($course == NULL) {
     header("Location: index.html");
     die();
 }
 
-if(!$course->isEnrolled($user) && !$course->isInvited($user)) {
+if(!$course->isEnrolled($user) && !$course->isInvited($user) && $course->owner->id != $user->id) {
     header("Location: denied.php?id=" . $course->id);
     die();
 }

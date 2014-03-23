@@ -167,7 +167,7 @@ class Course {
         $mail->addTo($email);
         $mail->setSubject("You have been invited to a class!");
 
-        $url = $this->getURL();
+        $url = "http://codium.io/" . $this->getURL();
         $urlz = "http://<z>codium</z>.io/" . $page;
         $index = strrpos($email, '@');
         $emailz = substr_replace($email, "<z></z>", $index < 0 ? 1 : $index, 0);
@@ -228,7 +228,7 @@ class Course {
     }
 
     function getURL() {
-        return "http://codium.io/" . $this->page;
+        return "mainpage.php?id=" . $this->page;
     }
 
 }
@@ -351,6 +351,28 @@ function getCourse($id) {
     $open = NULL;
     $page = NULL;
     $stmt->bind_result($name, $owner, $start, $end, $open, $page);
+    if(!$stmt->fetch()) {
+        $stmt->close();
+        return null;
+    }
+    $stmt->close();
+    return new Course($id, $name, getUserByID($owner), $start, $end, $open, $page);
+}
+
+function getCourseByPage($page) {
+    $mysql = getDB();
+
+    $stmt = $mysql->prepare("SELECT `name`,`owner`,`start`,`end`,`open`,`id` FROM `classes` WHERE `page` = ?");
+    $stmt->bind_param("s", $page);
+    $stmt->execute();
+
+    $name = NULL;
+    $owner = NULL;
+    $start = NULL;
+    $end = NULL;
+    $open = NULL;
+    $id = NULL;
+    $stmt->bind_result($name, $owner, $start, $end, $open, $id);
     if(!$stmt->fetch()) {
         $stmt->close();
         return null;
