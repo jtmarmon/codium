@@ -37,27 +37,13 @@ body {
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-.site-wrapper1 {
+.site-wrapper {
   display: table;
   width: 100%;
   height: 100%; /* For at least Firefox */
-  min-height: 100%;
-   background-image:url("../../img/img8.png");
+  background-size: cover;
+   background-image:url("../../codium.jpg");
 
-}
-.site-wrapper2
-{
-  background-image:url("../../img/img1.png  ");;
-  display: table;
-  width: 100%;
-  height: 100%; /* For at least Firefox */
-}
-.site-wrapper3
-{
-  background-image:url("../../img/img6.png  ");;
-  display: table;
-  width: 100%;
-  height: 100%; /* For at least Firefox */
 }
 .site-wrapper-inner {
   display: table-cell;
