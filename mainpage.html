@@ -44,6 +44,14 @@
 	    	padding-right:none;
 	    	display:inline-block;
 	    }
+	    #language-form
+	    {
+	    	position: absolute;
+	    	float:left;
+	    	top:70%;
+	    	left:43%;
+	    }
+
 	    </style>
 
 
@@ -53,8 +61,8 @@
       <div class="container-fluid">
         <div  class="navbar-header">
           <a class="navbar-brand"  href="#">Class: <!--TODO LOAD CLASSNAME FROM PHP, TODO ADD NAME TO END OF TOOLBAR--> </a>
+     	 </div>
       </div>
-        </div>
     </div>
 
     </div>
@@ -64,14 +72,7 @@
 		<h3 id = "write-some-code" style = "display:inline; margin-left: 35%;"> Chat with your classmates.</h3>
 		
 
-		<form action="">
-			<select name="Language">
-				<option value="JavaScript">JavaScript</option>
-				<option value="CSS">CSS</option>
-				<option value="HTML">HTML</option>
-				<option value="PHP">PHP</option>
-			</select>
-		</form>
+		
 
         <!--
 		<div class="dropdown">
@@ -87,7 +88,17 @@
 			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
   				</ul>
 		</div> -->
-		<div id ="firepad"></div>
+		<form action="" id = "language-form">
+				<select name="Language">
+					<option value="JavaScript">JavaScript</option>
+					<option value="CSS">CSS</option>
+					<option value="HTML">HTML</option>
+					<option value="PHP">PHP</option>
+				</select>
+		</form>
+		<div id ="firepad">
+		</div>
+
 		<div id = "firechat-wrapper"> </div>
 
  	<script type='text/javascript'>
