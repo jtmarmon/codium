@@ -42,3 +42,15 @@ body {
 .error {
   color: #F00;
 }
+
+#noaccount {
+  margin-top: 30px;
+}
+
+#noaccount a, #noaccount a:hover {
+  text-decoration: none;
+}
+
+#sign-up {
+  display: none;
+}
