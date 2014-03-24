@@ -1,18 +1,10 @@
-<?php /*
+<?php 
     require_once 'opentok/OpenTokSDK.php';
-
-    require_once 'opentok/OpenTokArchive.php';
 
     require_once 'opentok/OpenTokSession.php';
 
     $apiObj = new OpenTokSDK(API_Config::API_KEY, API_Config::API_SECRET);
 
-    if($_REQUEST['sessionId']) {
-        $sessionId = $_REQUEST['sessionId'];
-    } else {
-        $session = $apiObj->create_session();
-        $sessionId = $session->getSessionId();
-    }*/
     require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
@@ -176,9 +168,9 @@ if(!$course->isEnrolled($user)) {
     </script>
     <script type="text/javascript">
 			  var apiKey    =  "44698282";
-			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
-			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
-			  function sessionConnectedHandler (event) {
+        var sessionId = '<?php echo $course->tok?>'
+        var token     =  '<?php apiObj->generateToken($course->tok); ?>'
+        function sessionConnectedHandler (event) {
 			  	//TODO wrap this code in "if is teacher"
 			     session.publish(publisher); 
 			     subscribeToStreams(event.streams);

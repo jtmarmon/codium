@@ -1,5 +1,10 @@
 <?php
+    require_once 'opentok/OpenTokSDK.php';
 
+    require_once 'opentok/OpenTokSession.php';
+    $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
+    $sessionID = $apiObj->createSession("127.0.0.1");
+    
 require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
@@ -28,11 +33,12 @@ if(isset($_POST['name'])) {
   } else {
     if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0) {
       $page = $_POST['customURLInput'];
-      $course = $user->hostCourseCustom($_POST['name'], time(), time(), !$closed, $page);
+      $course = $user->hostCourseCustom($_POST['name'], time(), time(), !$closed, $page, $sessionID);
+
     } else {
       $course = $user->hostCourse($_POST['name'], time(), time(), !$closed);
     }
-
+      
     if($closed) {
       $split = preg_split('/$\R?^/m', $_POST['class-list']);
       foreach($split as $line) {
