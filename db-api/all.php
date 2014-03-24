@@ -59,7 +59,7 @@ class User {
         $stmt->execute();
         $stmt->close();
 
-        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
+        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ? AND `tok` = ?");
         $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $id = NULL;
@@ -83,7 +83,7 @@ class User {
         $stmt->execute();
         $stmt->close();
 
-        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ?");
+        $stmt = $mysql->prepare("SELECT `id` FROM `classes` WHERE `name` = ? AND `owner` = ? AND `start` = FROM_UNIXTIME(?) AND `end` = FROM_UNIXTIME(?) AND `open` = ? AND `page` = ? AND `tok` = ?");
         $stmt->bind_param("sississ", $name, $this->id, $start, $end, $o, $hash, $tok);
         $stmt->execute();
         $id = NULL;

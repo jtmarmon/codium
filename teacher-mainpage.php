@@ -1,5 +1,12 @@
 <?php
 
+  require_once 'opentok/OpenTokSDK.php';
+
+    require_once 'opentok/OpenTokSession.php';
+
+    $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
+        
+
 require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
@@ -16,6 +23,7 @@ if(!isset($_COOKIE['hash'])) {
   die();
 }
 
+echo "4324";
 require_once "db-api/all.php";
 
 $user = getUserByHash($_COOKIE['hash']);
@@ -56,19 +64,19 @@ function l($l) {
 
 ?>
 <html>
-	<head>
-		<meta charset = "utf-8">
-		<!--BOOTSTRAP & FONTS-->
-		<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:400,300,500' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
-	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	    <link href="bootstrap/css/dashboard.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	    <!--FIREPAD-->
-		 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+  <head>
+    <meta charset = "utf-8">
+    <!--BOOTSTRAP & FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:400,300,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
+      <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+      <link href="bootstrap/css/dashboard.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+      <!--FIREPAD-->
+     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+      <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
 
-	    <link rel="stylesheet" href="firepad/firepad.css">
+      <link rel="stylesheet" href="firepad/firepad.css">
       <link rel="stylesheet" href="firechat/firechat-default.css">
       <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
       <!--OPENTOK-->
@@ -82,9 +90,9 @@ function l($l) {
         ?>
       <script src="firepad/firepad.js"></script>
       <script src="firechat/firechat-default.js"></script>
-		<!--CUSTOM PAGE CSS -->
-	    <link href = "mainpage.css" rel = "stylesheet">
-	    <link href = "firechat-overload.css" rel = "stylesheet">
+    <!--CUSTOM PAGE CSS -->
+      <link href = "mainpage.css" rel = "stylesheet">
+      <link href = "firechat-overload.css" rel = "stylesheet">
       <script type="text/javascript">
         function refreshSyntaxColors() {
             var l = document.getElementById("Language").value;
@@ -113,13 +121,13 @@ function l($l) {
           });*/
         }
       </script>
-	</head>
-	<body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
+  </head>
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
       <div class="container-fluid">
         <div  class="navbar-header">
           <a class="navbar-brand"  href="dashboard.php">Codium</a>
-     	</div>
+      </div>
         <div class="navbar-collapse collapse">
            <ul class="nav navbar-nav navbar-right">
              <li><?php echo $user->getName(); ?></li>
@@ -130,20 +138,20 @@ function l($l) {
     </div>
 
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php echo $course->name; ?></h1>
-		<div id = "tokbox"> </div>
+    <h1 class = "page-header" style = "text-align:center;">Welcome to <?php echo $course->name; ?></h1>
+    <div id = "tokbox"> </div>
 
         <div id="col-left">
             <h3 id="write-some-code">Write some code.</h3>
-    		<form action="" id="language-form">
-    				<select name="Language" id="Language">
-    					<?php
+        <form action="" id="language-form">
+            <select name="Language" id="Language">
+              <?php
                         foreach($modes as $mode) {
                             echo '<option value="' . $mode . '"' . l($mode) . '>' . $mode . '</option>';
                         }
                         ?>
-    				</select>
-    		</form>
+            </select>
+        </form>
             <div id="firepad"></div>
             <h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
           <table>
@@ -157,20 +165,20 @@ function l($l) {
 
         <div id="col-right">
             <h3 id="write-some-code">Chat with your classmates.</h3>
-    		    <div id="firechat-wrapper"> </div>
+            <div id="firechat-wrapper"> </div>
             <div id = "firebase-student"></div>
         </div>
     <script type="text/javascript">
     function searchStudent()
     {
-	    var key=e.keyCode || e.which;
-		if (key==13){
-		form.submit(); //call search function
-		}
-		
-	}
+      var key=e.keyCode || e.which;
+    if (key==13){
+    form.submit(); //call search function
+    }
+    
+  }
     </script>
- 	
+  
      <script type='text/javascript'>
            var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
             var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
@@ -199,41 +207,40 @@ function l($l) {
      
     </script>
     <script type="text/javascript">
-			
-			 var apiKey    =  "44698282";
-			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
-			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
-			  
-			  function sessionConnectedHandler (event) {
-			  	//TODO wrap this code in "if is teacher"
-			     session.publish(publisher); 
-			     subscribeToStreams(event.streams);
-			  }
-			  function subscribeToStreams(streams) {
-			    for (var i = 0; i < streams.length; i++) {
-			        var stream = streams[i];
-			        if (stream.connection.connectionId
-			               != session.connection.connectionId) {
-			        	//TODO wrap this code in if isn't teacher
-			            session.subscribe(stream, {width:700, height:700});
-			        }
-			    }
-			  }
-			  function streamCreatedHandler(event) {
-			    subscribeToStreams(event.streams);
-			  }
-			 
-			  var publisher = TB.initPublisher(apiKey,  "tokbox");
-			  var session   = TB.initSession(sessionId);
-			 
-			  session.connect(apiKey, token);
-			  session.addEventListener("sessionConnected",
-			                           sessionConnectedHandler);
-			 
-			  session.addEventListener("streamCreated",
-			                           streamCreatedHandler);
+      
+       var apiKey    =  "44698282";
+        var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNzo1ODo0MyBQRFQgMjAxNH4wLjgyMjQ1MTF-";/*'<?php echo $course->tok?>'*/
+        var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz0yZGU0ZmIyM2ZiMTI3ZTdkYmVjMWI0OTY5NDc2ODcxMjgxZWFmY2MyOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9Ml9NWDQwTkRZNU9ESTRNbjUtVTNWdUlFMWhjaUF5TXlBd056bzFPRG8wTXlCUVJGUWdNakF4Tkg0d0xqZ3lNalExTVRGLSZjcmVhdGVfdGltZT0xMzk1NTg2NzQ2Jm5vbmNlPTAuMzQzODUwNDI1NDI1MTQ1NTQmZXhwaXJlX3RpbWU9MTM5ODE3NjMxOSZjb25uZWN0aW9uX2RhdGE9";
+        function sessionConnectedHandler (event) {
+          //TODO wrap this code in "if is teacher"
+           session.publish(publisher); 
+           subscribeToStreams(event.streams);
+        }
+        function subscribeToStreams(streams) {
+          for (var i = 0; i < streams.length; i++) {
+              var stream = streams[i];
+              if (stream.connection.connectionId
+                     != session.connection.connectionId) {
+                //TODO wrap this code in if isn't teacher
+                  session.subscribe(stream, {width:700, height:700});
+              }
+          }
+        }
+        function streamCreatedHandler(event) {
+          subscribeToStreams(event.streams);
+        }
+       
+        var publisher = TB.initPublisher(apiKey,  "tokbox");
+        var session   = TB.initSession(sessionId);
+       
+        session.connect(apiKey, token);
+        session.addEventListener("sessionConnected",
+                                 sessionConnectedHandler);
+       
+        session.addEventListener("streamCreated",
+                                 streamCreatedHandler);
 
-		</script>
-		 
-	</body>
+    </script>
+     
+  </body>
 </html>
