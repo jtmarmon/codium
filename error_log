@@ -1,0 +1,378 @@
+[23-Mar-2014 09:47:20 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 296
+[23-Mar-2014 09:57:10 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 330
+[23-Mar-2014 09:57:58 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 330
+[23-Mar-2014 09:58:08 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 330
+[23-Mar-2014 10:07:40 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 330
+[23-Mar-2014 11:23:39 UTC] PHP Fatal error:  Call to undefined function getCourseByPage() in /home/jtmarmon/public_html/codium.io/mainpage.php on line 27
+[23-Mar-2014 06:55:26 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 06:56:53 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 06:57:19 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 06:59:28 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:28 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:31 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:47 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:51 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:51 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:00:51 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:01:20 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 163
+[23-Mar-2014 07:01:22 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 163
+[23-Mar-2014 07:03:44 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 163
+[23-Mar-2014 07:03:48 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 163
+[23-Mar-2014 07:03:50 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 163
+[23-Mar-2014 07:04:14 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:05:52 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 164
+[23-Mar-2014 07:06:24 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:06:27 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:07:08 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:07:11 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:07:19 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:07:27 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:07:56 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:08:45 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:10:33 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:10:35 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:10:56 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:11:10 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:11:12 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 162
+[23-Mar-2014 07:18:35 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 151
+[23-Mar-2014 07:18:40 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 151
+[23-Mar-2014 07:18:52 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 151
+[23-Mar-2014 07:19:13 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 151
+[23-Mar-2014 07:19:20 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 165
+[23-Mar-2014 07:19:42 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 165
+[23-Mar-2014 07:19:44 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 165
+[23-Mar-2014 07:19:55 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 167
+[23-Mar-2014 07:19:58 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 167
+[23-Mar-2014 07:20:40 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:20:42 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:20:52 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:22:05 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:22:22 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 155
+[23-Mar-2014 07:23:06 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:23:48 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:23:58 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 154
+[23-Mar-2014 07:23:59 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 154
+[23-Mar-2014 07:24:18 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:24:27 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:24:34 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:24:36 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:27:39 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 156
+[23-Mar-2014 07:27:50 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:28:05 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:28:43 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:28:51 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:41:06 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:41:45 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:41:57 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 161
+[23-Mar-2014 07:53:15 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 165
+[23-Mar-2014 07:54:44 EST] PHP Fatal error:  Class 'API_Config' not found in /home/jtmarmon/public_html/codium.io/mainpage.php on line 165
+[23-Mar-2014 14:27:46 UTC] PHP Fatal error:  Call to a member function bind_param() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 57
+[23-Mar-2014 14:29:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:30:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:00 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:06 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:20 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:21 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:31:21 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:33:52 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:33:52 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:33:53 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:33:53 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:33:55 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:05 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:06 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:07 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:55 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:56 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:56 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:57 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:59 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:59 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:59 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:34:59 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:00 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:01 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:01 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:02 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:02 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:04 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:04 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:35:04 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:36:07 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:36:33 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:36:58 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:37:03 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:40:49 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:41:01 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:41:02 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:42:52 UTC] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Failed to create session: Invalid response from server' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:134
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/dashboard.php(7): OpenTokSDK->createSession('127.0.0.1')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 134
+[23-Mar-2014 14:44:40 UTC] PHP Fatal error:  Call to a member function bind_param() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 57
+[23-Mar-2014 14:49:12 UTC] PHP Fatal error:  Call to a member function bind_param() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 57
+[23-Mar-2014 14:49:14 UTC] PHP Fatal error:  Call to a member function bind_param() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 57
+[23-Mar-2014 14:49:22 UTC] PHP Fatal error:  Call to a member function bind_param() on a non-object in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 57
+[23-Mar-2014 10:52:58 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/mainpage.php(172): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[23-Mar-2014 10:56:37 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/mainpage.php(172): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[23-Mar-2014 10:56:38 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/teacher-mainpage.php(212): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[23-Mar-2014 10:57:08 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/mainpage.php(172): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[23-Mar-2014 10:57:33 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/teacher-mainpage.php(212): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[23-Mar-2014 10:58:05 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/teacher-mainpage.php(212): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[24-Mar-2014 06:06:05 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/teacher-mainpage.php(212): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70
+[24-Mar-2014 13:34:17 EST] PHP Fatal error:  Uncaught exception 'OpenTokException' with message 'Null or empty session ID are not valid' in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php:70
+Stack trace:
+#0 /home/jtmarmon/public_html/codium.io/teacher-mainpage.php(212): OpenTokSDK->generateToken('')
+#1 {main}
+  thrown in /home/jtmarmon/public_html/codium.io/opentok/OpenTokSDK.php on line 70

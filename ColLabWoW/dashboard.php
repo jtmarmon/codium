@@ -1,10 +1,5 @@
-<?php 
-    require_once 'opentok/OpenTokSDK.php';
+<?php
 
-    require_once 'opentok/OpenTokSession.php';
-    $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
-    $sessionID = $apiObj->createSession("127.0.0.1");
-    
 require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
@@ -25,22 +20,10 @@ if($user == NULL) {
 }
 
 if(isset($_POST['name'])) {
-
   $closed = isset($_POST['closed']) && $_POST['closed'] == 'on';
-  if($closed && (!isset($_POST['class-list']) || strlen($_POST['class-list']) == 0)) {
-    $error = "Please open class or fill out class list.";
-  } else if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0 && doesPageExist($_POST['customURLInput'])) {
-    $error = "A class with that URL already exists.";
-  } else {
-    if(isset($_POST['customURLInput']) && strlen($_POST['customURLInput']) > 0) {
-      $page = $_POST['customURLInput'];
-      $course = $user->hostCourseCustom($_POST['name'], time(), time(), !$closed, $page,$sessionID);
+  if(!$closed || isset($_POST['class-list'])) {
+    $course = $user->hostCourse($_POST['name'], time(), time(), !$closed);
 
-    } else {
-      $course = $user->hostCourse($_POST['name'], time(), time(), !$closed, $sessionID);
-      
-    }
-      
     if($closed) {
       $split = preg_split('/$\R?^/m', $_POST['class-list']);
       foreach($split as $line) {
@@ -48,9 +31,7 @@ if(isset($_POST['name'])) {
       }
     }
 
-    //echo $course->getTeacherURL();
-
-    header("Location: " . $course->getTeacherURL());
+    header("Location: " . $course->getURL());
     die();
   }
 }
@@ -106,7 +87,7 @@ if(isset($_POST['name'])) {
     <script type="text/javascript">
     function updateURL()
     {
-      document.getElementById('customURL').innerHTML = "www.codium.io/" + document.getElementById('customURLInput').value;
+      document.getElementById('customURL').innerHTML = document.getElementById('customURLInput');
     }
     </script>
         <style type = "text/css">
@@ -221,7 +202,6 @@ if(isset($_POST['name'])) {
 
           <h3 class="sub-header">Start a class!</h3>
           <div id="start-class">
-            <?php if(isset($error)) echo '<p class="error">' . $error . '</p>' ?>
             <form method="post" action="#">
               <input type="text" class="form-control" placeholder="Class name" id="name" name="name" />
               <input type="checkbox" id="closed" name="closed" onchange="checkOpen()" value="on" />
@@ -230,7 +210,7 @@ if(isset($_POST['name'])) {
                 <p align="center">Please enter the email address of each student on a separate line.</p>
                 <textarea id="class-list" style = "margin-top:5px; text-align:center;" name="class-list"> </textarea>
               </div>
-              <input type="text" id="customURLInput" name="customURLInput" style="display:inline; width:300px;" class="form-control-nospace" onkeyup = "updateURL()" placeholder="Custom URL (Optional)">
+              <input type="text" id = "customURLInput" style = "display:inline; width:300px;" class="form-control-nospace" onkeyup = "updateURL()" placeholder="Custom URL (Optional)">
               <h6 id = "customURL"> www.codium.com/ </h6>
               <input type="submit" class="btn btn-md btn-success" value="Start Class" />
             </form>
@@ -254,7 +234,7 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($hosting as $course) {
-                      $meta = ' onclick="window.location=\'' . $course->getTeacherURL() . '\'"';
+                      $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";
                       echo '<td' . $meta . '>' . count($course->enrolled()) . "</td>";
@@ -285,7 +265,6 @@ if(isset($_POST['name'])) {
                     echo "</tr>";
                   } else {
                     foreach($enrolled as $course) {
-                      if($course->owner->id == $user->id) continue;
                       $meta = ' onclick="window.location=\'' . $course->getURL() . '\'"';
                       echo '<tr>';
                       echo '<td' . $meta . '>' . $course->name . "</td>";

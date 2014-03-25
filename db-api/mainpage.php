@@ -1,20 +1,26 @@
-<?php
+<?php/*
+    require_once 'opentok/OpenTokSDK.php';
 
-	require_once 'opentok/OpenTokSDK.php';
+    require_once 'opentok/OpenTokArchive.php';
 
     require_once 'opentok/OpenTokSession.php';
 
-    $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
-        
+    $apiObj = new OpenTokSDK(API_Config::API_KEY, API_Config::API_SECRET);
 
-require_once "Mobile_Detect.php";
+    if($_REQUEST['sessionId']) {
+        $sessionId = $_REQUEST['sessionId'];
+    } else {
+        $session = $apiObj->create_session();
+        $sessionId = $session->getSessionId();
+    }*/
+    require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
   die();
 }
 
 if(!isset($_GET['id'])) {
-    header("Location: index.php");
+    header("Location: index.html");
     die();
 }
 
@@ -33,7 +39,7 @@ if($user == NULL) {
 
 $course = getCourseByPage($_GET['id']);
 if($course == NULL) {
-    header("Location: index.php");
+    header("Location: index.html");
     die();
 }
 
@@ -61,6 +67,10 @@ function l($l) {
     }
 }
 
+if(!$course->isEnrolled($user)) {
+  $course->enroll($user);
+}
+
 ?>
 <html>
 	<head>
@@ -68,58 +78,37 @@ function l($l) {
 		<!--BOOTSTRAP & FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:400,300,500' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
-	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	    <link href="bootstrap/css/dashboard.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	    <!--FIREPAD-->
-		 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
-
-	    <link rel="stylesheet" href="firepad/firepad.css">
-      <link rel="stylesheet" href="firechat/firechat-default.css">
+	    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+	    <link href="bootstrap/css/dashboard.css" rel="stylesheet"/>
+       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+      <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+		
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+     
       <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
-      <!--OPENTOK-->
+      <link rel="stylesheet" href="firepad/firepad.css"/>
+
+      <link href = "mainpage.css" rel = "stylesheet">
+
+	    <!--FIREPAD-->
     <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" ></script>
       <script src="codemirror/lib/codemirror.js"></script>
+       <script src="firepad/firepad.js"></script>
+      <link rel="stylesheet" href="firechat/firechat-default.css"/>
+      <script src="firechat/firechat-default.js"></script>
+	    <!--OPENTOK-->
+
+     
         <?php
             $modes = array('clojure', 'cobol', 'commonlisp', 'css', 'd', 'erlang', 'go', 'groovy', 'haskell', 'javascript', 'lua', 'octave', 'pascal', 'perl', 'php', 'python', 'r', 'ruby', 'scheme', 'smalltalk', 'sql');
             foreach($modes as $mode) {
                 echo '<script src="codemirror/mode/' . $mode . '/' . $mode . '.js"></script>';
             }
         ?>
-      <script src="firepad/firepad.js"></script>
-      <script src="firechat/firechat-default.js"></script>
+
+	   
 		<!--CUSTOM PAGE CSS -->
-	    <link href = "mainpage.css" rel = "stylesheet">
-	    <link href = "firechat-overload.css" rel = "stylesheet">
-      <script type="text/javascript">
-        function refreshSyntaxColors() {
-            var l = document.getElementById("Language").value;
-            firepad.codeMirror_.setOption("mode", l);
-            var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
-            myRootRef.set(l);
-        }
-
-        var cpad = null;
-
-        function view(id) {
-          //document.getElementsByClassName("firepad")[0].removeChild(document.getElementsByClassName("CodeMirror")[0]);
-          document.getElementById("firepad").removeChild(document.getElementsByClassName("firepad")[0]);
-          //cpad.dispose();
-
-          var firepadRef = new Firebase('http://codium.firebaseio.com/doc-' + <?php echo "'" . $course->id . "'"; ?> + '-' + id);
-          var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true/*, mode: document.getElementById('Language').value*/});
-          var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
-          cpad = firepad;
-
-          refreshSyntaxColors();
-
-          //document.getElementById("Language").value = 
-          /*firepadRef.on('value', function(snapshot) {
-            alert('lang is ' + snapshot.val());
-          });*/
-        }
-      </script>
+        
 	</head>
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style = "background-color:#5cb85c;">
@@ -137,14 +126,14 @@ function l($l) {
     </div>
 
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to "<?php echo $course->name; ?>"</h1>
+		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php echo $course->name; ?></h1>
 		<div id = "tokbox"> </div>
 
         <div id="col-left">
             <h3 id="write-some-code">Write some code.</h3>
     		<form action="" id="language-form">
-    				<select name="Language" id="Language">
-    					<?php
+    				<select name="Language" id="Language" onchange="refreshSyntaxColors()">
+                        <?php
                         foreach($modes as $mode) {
                             echo '<option value="' . $mode . '"' . l($mode) . '>' . $mode . '</option>';
                         }
@@ -152,67 +141,34 @@ function l($l) {
     				</select>
     		</form>
             <div id="firepad"></div>
-            <h4 id = "enter-student-name"> Select a student to view his/her code. </h4>
-          <table>
-            <?php
-              foreach($course->enrolled() as $student) {
-                echo '<tr><td><a class="btn btn-md btn-default" onclick="view(' . $student->id . ')">' . $student->getName() . '</a> </td></tr>';
-              }
-            ?>
-          </table>
         </div>
 
         <div id="col-right">
             <h3 id="write-some-code">Chat with your classmates.</h3>
-    		    <div id="firechat-wrapper"> </div>
-            <div id = "firebase-student"></div>
+    		<div id="firechat-wrapper"> </div>
         </div>
-    <script type="text/javascript">
-    function searchStudent()
-    {
-	    var key=e.keyCode || e.which;
-		if (key==13){
-		form.submit(); //call search function
-		}
-		
-	}
-    </script>
- 
-   <script type='text/javascript'>
-           var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
-            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-           
-            var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-              if(user)
-              {
-                chat._chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
-                  chat._chat.enterRoom(passedid);
-                  chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-                  });
-              }
-              else
-              {
-                  simpleLogin.login('<?php echo $user->getName(); ?>');
-                  chat._chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
-                    chat._chat.enterRoom(passedid);});
-              }
-            });
 
+ 	 
+      <script type='text/javascript'>
+           var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
+    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+    var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
+      simpleLogin.login('<?php echo $user->getName(); ?> ')  
+      }
+    });
     </script>
     <script type = "text/javascript">
-    //THIS IS THE FIRPAD FOR A REGULAR USER
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
-      cpad = firepad;
      
     </script>
     <script type="text/javascript">
 			
-			 var apiKey    =  "44698282";
-			  var sessionId = '<?php echo $course->tok?>'
-			  var token     = '<?php echo $apiObj->generateToken($course->tok)?>'
-        	  function sessionConnectedHandler (event) {
+			  var apiKey    =  "44698282";
+			  var sessionId = "2_MX40NDY5ODI4Mn5-U3VuIE1hciAyMyAwNTo0ODozOCBQRFQgMjAxNH4wLjM2NTk1MTE4fg";
+			  var token     = "T1==cGFydG5lcl9pZD00NDY5ODI4MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1mMTliODlhZjk3ZmRiZTNhOGY5NWZiMzhjM2YyYmUxMDJjYjY5NDM5OnJvbGU9c3Vic2NyaWJlciZzZXNzaW9uX2lkPTJfTVg0ME5EWTVPREk0TW41LVUzVnVJRTFoY2lBeU15QXdOVG8wT0Rvek9DQlFSRlFnTWpBeE5INHdMak0yTlRrMU1URTRmZyZjcmVhdGVfdGltZT0xMzk1NTc4OTQxJm5vbmNlPTAuMDkyMTQ2NjE1MTIyNDgxMDEmZXhwaXJlX3RpbWU9MTM5ODE3MDkxMCZjb25uZWN0aW9uX2RhdGE9"
+			  function sessionConnectedHandler (event) {
 			  	//TODO wrap this code in "if is teacher"
 			     session.publish(publisher); 
 			     subscribeToStreams(event.streams);
@@ -242,6 +198,13 @@ function l($l) {
 			                           streamCreatedHandler);
 
 		</script>
-		 
+     <script type="text/javascript">
+            function refreshSyntaxColors() {
+                var l = document.getElementById("Language").value;
+                firepad.codeMirror_.setOption("mode", l);
+                var myRootRef = new Firebase(<?php echo "'https://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "/lang'"; ?>);
+                myRootRef.set(l);
+            }
+        </script>
 	</body>
 </html>

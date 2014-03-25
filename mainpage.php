@@ -3,7 +3,7 @@
 
     require_once 'opentok/OpenTokSession.php';
 
-    $apiObj = new OpenTokSDK(API_Config::API_KEY, API_Config::API_SECRET);
+    $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
 
     require_once "Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
@@ -119,7 +119,8 @@ if(!$course->isEnrolled($user)) {
     </div>
 
     </div>
-		<h1 class = "page-header" style = "text-align:center;">Welcome to <?php echo $course->name; ?></h1>
+		<h1 class = "page-header" style = "text-align:center;">Welcome to "<?php echo $course->name; ?>"</h1>
+    <h3 class = "page-header" align="center" id = "teacher-not-published"> Oops!  Looks like your teacher either isn't streaming, or hasn't set up their camera yet. </h3>
 		<div id = "tokbox"> </div>
 
         <div id="col-left">
@@ -141,25 +142,28 @@ if(!$course->isEnrolled($user)) {
     		<div id="firechat-wrapper"> </div>
         </div>
 
- 	 
-     <script type='text/javascript'>
+   <script type='text/javascript'>
            var chatRef = new Firebase('https://firechat-demo.firebaseio.com');
             var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-            var chat2 = new Firechat(chatRef);
-            var id = null;
+           
             var simpleLogin = new FirebaseSimpleLogin(chatRef, function(err, user) {
-              if (user) {
-                chat2.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
-                   chat2.enterRoom(passedid);
-                });
-                chat.setUser(user.id, '<?php echo $user->getName(); ?>');
-                
-              } else {
-                simpleLogin.login('anonymous');    
+              if(user)
+              {
+                chat._chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
+                  chat._chat.enterRoom(passedid);
+                  chat.setUser(user.id, '<?php echo $user->getName(); ?>');
+                  });
+              }
+              else
+              {
+                  simpleLogin.login('<?php echo $user->getName(); ?>');
+                  chat._chat.createRoom('codium-<?php echo $course->page; ?> ', "public", function(passedid){
+                    chat._chat.enterRoom(passedid);});
               }
             });
 
     </script>
+
     <script type = "text/javascript">
       var firepadRef = new Firebase(<?php echo "'http://codium.firebaseio.com/" . $course->getFirebaseIDFor($user) . "'";?>);
       var codeMirror = CodeMirror(document.getElementById('firepad'), { lineNumbers: true, mode: document.getElementById('Language').value});
@@ -167,21 +171,26 @@ if(!$course->isEnrolled($user)) {
      
     </script>
     <script type="text/javascript">
-			  var apiKey    =  "44698282";
+			   var apiKey    =  "44698282";
         var sessionId = '<?php echo $course->tok?>'
-        var token     =  '<?php apiObj->generateToken($course->tok); ?>'
+        var token     = '<?php echo $apiObj->generateToken($course->tok)?>'
         function sessionConnectedHandler (event) {
-			  	//TODO wrap this code in "if is teacher"
-			     session.publish(publisher); 
+			     //session.publish(publisher); 
 			     subscribeToStreams(event.streams);
 			  }
 			  function subscribeToStreams(streams) {
+          var isPublished =  document.getElementById("teacher-not-published")
+          if (streams.length==0)
+              isPublished.style.display = "block";
+          else
+              isPublished.style.display = "none";
 			    for (var i = 0; i < streams.length; i++) {
-			        var stream = streams[i];
+			    var stream = streams[i];
 			        if (stream.connection.connectionId
 			               != session.connection.connectionId) {
 			        	//TODO wrap this code in if isn't teacher
-			            session.subscribe(stream, {width:700, height:700});
+			            session.subscribe(stream, "tokbox");
+
 			        }
 			    }
 			  }
@@ -190,7 +199,7 @@ if(!$course->isEnrolled($user)) {
 			  }
      
 			 
-			  var publisher = TB.initPublisher(apiKey,  "tokbox");
+			  //var publisher = TB.initPublisher(apiKey,  "tokbox");
 			  var session   = TB.initSession(sessionId);
 			 
 			  session.connect(apiKey, token);
