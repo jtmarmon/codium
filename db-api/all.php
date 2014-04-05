@@ -234,7 +234,8 @@ class Course {
     }
 
     function getTeacherURL() {
-        return "teacher-mainpage.php?id=" . $this->page;
+        //return "teacher-mainpage.php?id=" . $this->page;
+        return $this->getURL();
     }
 
 }

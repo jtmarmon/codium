@@ -34,6 +34,7 @@ if($course == NULL) {
     header("Location: index.php");
     die();
 }
+$isTeacher = ($course->owner->id == $user->id);
 
 if(!$course->isEnrolled($user) && !$course->isInvited($user) && $course->owner->id != $user->id) {
     header("Location: denied.php?id=" . $course->id);
@@ -171,11 +172,13 @@ if(!$course->isEnrolled($user)) {
      
     </script>
     <script type="text/javascript">
-			   var apiKey    =  "44698282";
-        var sessionId = '<?php echo $course->tok?>'
-        var token     = '<?php echo $apiObj->generateToken($course->tok)?>'
+			 var apiKey    =  "44698282";
+        var sessionId = '<?php echo $course->tok; ?>';
+        var token     = '<?php echo $apiObj->generateToken($course->tok); ?>';
+        var publisher = TB.initPublisher(apiKey,  "tokbox");
         function sessionConnectedHandler (event) {
-			     //session.publish(publisher); 
+			     <?php if($isTeacher) echo "session.publish(publisher);" ?> 
+           console.log("hi");
 			     subscribeToStreams(event.streams);
 			  }
 			  function subscribeToStreams(streams) {
@@ -199,7 +202,7 @@ if(!$course->isEnrolled($user)) {
 			  }
      
 			 
-			  //var publisher = TB.initPublisher(apiKey,  "tokbox");
+			  
 			  var session   = TB.initSession(sessionId);
 			 
 			  session.connect(apiKey, token);

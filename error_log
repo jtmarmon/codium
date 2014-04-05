@@ -1,0 +1,12 @@
+[05-Apr-2014 01:48:51 UTC] PHP Warning:  require_once(db-info.php): failed to open stream: No such file or directory in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 253
+[05-Apr-2014 01:48:51 UTC] PHP Fatal error:  require_once(): Failed opening required 'db-info.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 253
+[05-Apr-2014 01:59:09 UTC] PHP Notice:  Undefined property: mysqli_stmt::$close in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 106
+[05-Apr-2014 01:59:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 23
+[05-Apr-2014 01:59:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 24
+[05-Apr-2014 02:01:31 UTC] PHP Notice:  Undefined property: mysqli_stmt::$close in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 106
+[05-Apr-2014 02:01:31 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 23
+[05-Apr-2014 02:01:31 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 24
+[05-Apr-2014 02:01:50 UTC] PHP Notice:  Undefined property: mysqli_stmt::$close in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 106
+[05-Apr-2014 02:01:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 23
+[05-Apr-2014 02:01:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/jtmarmon/public_html/codium.io/db-api/all.php:106) in /home/jtmarmon/public_html/codium.io/log-in.php on line 24
+[04-Apr-2014 21:03:51 EST] PHP Fatal error:  Call to undefined function getURL() in /home/jtmarmon/public_html/codium.io/db-api/all.php on line 238

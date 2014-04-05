@@ -210,7 +210,7 @@ body {
 }
 
 .no-accept {
-  background-color: #FF8383;
+  background-color: #FF8383 !important;
 }
 
 .error {
