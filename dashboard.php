@@ -1,11 +1,11 @@
 <?php 
-    require_once '../../frameworks/opentok/OpenTokSDK.php';
+    require_once 'frameworks/opentok/OpenTokSDK.php';
 
-    require_once '../../frameworks/opentok/OpenTokSession.php';
+    require_once 'frameworks/opentok/OpenTokSession.php';
     $apiObj = new OpenTokSDK("44698282", "5a88bd87e5144d5db7388f89755091c4540aa363");
     $sessionID = $apiObj->createSession("127.0.0.1");
     
-require_once "Mobile_Detect.php";
+require_once "frameworks/Mobile_Detect.php";
 if((new Mobile_Detect)->isMobile()) {
   echo "We noticed that you are using a mobile device! Codium does not work on mobile devices. If you would like to learn how to code or teach others how to code, please visit us on your desktop computer.";
   die();
@@ -16,7 +16,7 @@ if(!isset($_COOKIE['hash'])) {
   die();
 }
 
-require_once "../db-api/all.php";
+require_once "db-api/all.php";
 
 $user = getUserByHash($_COOKIE['hash']);
 if($user == NULL) {
@@ -69,11 +69,11 @@ if(isset($_POST['name'])) {
     <title>Codium | Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../frameworks/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="frameworks/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../frameworks/bootstrap/css/dashboard.css" rel="stylesheet">
-    <link href="../css/dashboard-extra.css" rel="stylesheet">
+    <link href="frameworks/bootstrap/css/dashboard.css" rel="stylesheet">
+    <link href="css/dashboard-extra.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

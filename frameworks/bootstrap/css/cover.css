@@ -43,7 +43,7 @@ body {
   height: 100%; /* For at least Firefox */
   background-size: cover;
   background-position: center;
-   background-image:url("../../codium4.png");
+   background-image:url("../../../img/codium4.png");
 
 }
 .site-wrapper2 {
@@ -52,7 +52,7 @@ body {
   height: 100%; /* For at least Firefox */
   background-size: cover;
   background-position: center;
-  background-image:url("../../blur1.jpg");
+  background-image:url("../../../img/blur1.jpg");
 
 }
 .site-wrapper-inner {

@@ -7,7 +7,7 @@ if(isset($_GET['error'])) {
 $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : "dashboard.php";
 
 if(isset($_POST['email'], $_POST['pass'])/* && strlen($_POST['email']) > 0 && strlen($_POST['pass']) > 0*/) {
-  require_once "../db-api/all.php";
+  require_once "db-api/all.php";
 
   $email = $_POST['email'];
   $pass = $_POST['pass'];
@@ -33,7 +33,7 @@ if(isset($_GET['error0'])) {
 
 if(isset($_POST['fname'], $_POST['lname'], $_POST['emailr'], $_POST['passr'])) {
   $register = true;
-  require_once "../db-api/all.php";
+  require_once "db-api/all.php";
 
   $fname = $_POST['fname'];
   $lname = $_POST['lname'];
@@ -61,8 +61,8 @@ function a($var) {
 <html>
 	<head>
 		<meta charset ="utf-8">
-		<link rel = "stylesheet" href = "../../frameworks/bootstrap/css/bootstrap.css">
-		<link rel = "stylesheet" href = "../../frameworks/bootstrap/css/log-in.css">
+		<link rel = "stylesheet" href = "frameworks/bootstrap/css/bootstrap.css">
+		<link rel = "stylesheet" href = "frameworks/bootstrap/css/log-in.css">
     <script type="text/javascript">
       function showSignUp() {
         document.getElementById('sign-up').style.display = 'block';
